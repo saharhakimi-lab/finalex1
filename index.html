@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שיעור 10: פרויקט הגמר הגדול | האקדמיה לרשתות</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #03040b;
+            background: radial-gradient(circle at top, #0f1026 0%, #03040b 100%);
+            color: #f1f5f9;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #03040b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #eab308;
+            border-radius: 3px;
+        }
+        @keyframes gold-glow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(234, 179, 8, 0.4)); }
+            50% { filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.8)); }
+        }
+        .glow-gold {
+            animation: gold-glow 2.5s infinite;
+        }
+        /* Custom Certificate styling printing fallback */
+        @media print {
+            .no-print { display: none; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- TOP BAR -->
+    <header class="border-b border-yellow-900/40 bg-slate-950/90 backdrop-blur sticky top-0 z-50 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-yellow-600/20 p-2 rounded-lg border border-yellow-500/30 text-yellow-400">
+                    <i data-lucide="award" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-black text-lg tracking-wide text-white">NET_ACADEMY // <span class="text-yellow-500">CLASS_10</span></h1>
+                    <p class="text-xs text-slate-400">פרויקט הגמר המסכם: הגנת ארכיטקטורת המידע</p>
+                </div>
+            </div>
+            
+            <!-- Gamification & Progress Status -->
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
+                    <span class="text-xs text-slate-400">רמה:</span>
+                    <span class="text-xs font-bold text-yellow-500" id="user-level font-black">טוען נתונים...</span>
+                    <div class="w-16 bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div id="level-bar" class="bg-yellow-500 h-full w-[90%] transition-all duration-500"></div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-2 bg-yellow-950/40 border border-yellow-500/30 px-3 py-1.5 rounded-lg text-yellow-400">
+                    <i data-lucide="zap" class="w-4 h-4 text-yellow-400 animate-pulse"></i>
+                    <span class="text-xs font-bold">XP:</span>
+                    <span class="text-sm font-black code-font text-yellow-300" id="xp-counter">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- SIDEBAR -->
+        <aside class="lg:col-span-3 flex flex-col gap-4 no-print">
+            <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-5">
+                <h3 class="text-sm font-bold text-slate-300 mb-4 tracking-wider uppercase border-b border-slate-800 pb-2">מפת המשימה</h3>
+                <nav class="flex flex-col gap-2">
+                    <!-- Step 1 -->
+                    <button id="btn-step-1" onclick="switchStep(1)" class="w-full text-right flex items-center justify-between p-3 rounded-lg bg-yellow-950/30 border border-yellow-500/40 text-yellow-300 transition-all font-bold">
+                        <div class="flex items-center gap-3">
+                            <span class="code-font text-xs opacity-60">01.</span>
+                            <span>מפרט פרויקט הגמר</span>
+                        </div>
+                        <i data-lucide="file-text" class="w-4 h-4 text-yellow-400"></i>
+                    </button>
+                    <!-- Step 2 -->
+                    <button id="btn-step-2" onclick="switchStep(2)" class="w-full text-right flex items-center justify-between p-3 rounded-lg bg-slate-900/40 border border-slate-800 text-slate-400 hover:bg-slate-900 hover:text-slate-200 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="code-font text-xs opacity-60">02.</span>
+                            <span>לוח תכנון VLAN וניתוב</span>
+                        </div>
+                        <i data-lucide="map" class="w-4 h-4 opacity-50"></i>
+                    </button>
+                    <!-- Step 3 -->
+                    <button id="btn-step-3" onclick="switchStep(3)" class="w-full text-right flex items-center justify-between p-3 rounded-lg bg-slate-900/40 border border-slate-800 text-slate-400 hover:bg-slate-900 hover:text-slate-200 transition-all">
+                        <div class="flex items-center justify-between p-3 rounded-lg text-slate-400">
+                            <div class="flex items-center gap-3">
+                                <span class="code-font text-xs opacity-60">03.</span>
+                                <span>סימולטור אימות קונפיגורציה</span>
+                            </div>
+                            <i data-lucide="play" class="w-4 h-4 opacity-50"></i>
+                        </div>
+                    </button>
+                    <!-- Step 4 -->
+                    <button id="btn-step-4" onclick="switchStep(4)" class="w-full text-right flex items-center justify-between p-3 rounded-lg bg-slate-900/40 border border-slate-800 text-slate-400 hover:bg-slate-900 hover:text-slate-200 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="code-font text-xs opacity-60">04.</span>
+                            <span>הגנה על הפרויקט (AI)</span>
+                        </div>
+                        <i data-lucide="shield-check" class="w-4 h-4 opacity-50"></i>
+                    </button>
+                    <!-- Step 5 -->
+                    <button id="btn-step-5" onclick="switchStep(5)" class="w-full text-right flex items-center justify-between p-3 rounded-lg bg-slate-900/40 border border-slate-800 text-slate-400 hover:bg-slate-900 hover:text-slate-200 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="code-font text-xs opacity-60">05.</span>
+                            <span>תעודת הגמר הרשמית</span>
+                        </div>
+                        <i data-lucide="award" class="w-4 h-4 opacity-50"></i>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- SYSTEM LOG -->
+            <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-5 flex-grow flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 tracking-wider mb-3">יומן בחינת הגמר</h4>
+                    <div id="system-log" class="text-xs code-font text-yellow-500/80 space-y-2 h-48 overflow-y-auto bg-slate-900/50 p-3 rounded border border-slate-800">
+                        <p>[14:00:01] שירות בחינות הגמר NET_ACADEMY_V10 זמין.</p>
+                        <p>[14:00:02] ממתין להגשת תיק פרויקט מפורט...</p>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-800/50">
+                    <button onclick="resetProgress()" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-1.5 transition-colors">
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                        <span>אפס התקדמות שיעור</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CONTENT DISPLAY AREA -->
+        <section class="lg:col-span-9 flex flex-col gap-6">
+
+            <!-- STEP 1: CAPSTONE SPECIFICATION -->
+            <div id="step-1" class="step-container space-y-6">
+                <div class="bg-gradient-to-r from-yellow-950/30 to-slate-950 border border-yellow-900/40 rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                    <div class="absolute -right-20 -top-20 w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <span class="bg-yellow-900/60 border border-yellow-400/30 text-yellow-300 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-widest">משימת הגמר המסכמת</span>
+                    
+                    <h2 class="text-2xl md:text-3xl font-black text-white mt-4 mb-3">ברוך הבא למעבדת הגמר של האקדמיה!</h2>
+                    <p class="text-slate-300 leading-relaxed text-base">
+                        הגעת לרגע האמת. צברת ידע קריטי על מכשירי קצה, מודל השכבות, מתגים, ראוטרים, VLAN-ים, ניתוב סטטי, פרוטוקולי מניעת לופים ותרגום כתובות NAT.
+                        כעת עליך לעצב את **רשת הקמפוס של חברת CyberSecure**.
+                        <br><br>
+                        החברה מקימה קמפוס חדש המורכב משני בניינים, ודורשת את התנאים הבאים:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                            <h3 class="text-yellow-400 font-bold mb-2 flex items-center gap-2">
+                                <i data-lucide="server" class="w-5 h-5"></i>
+                                חלוקת מחלקות (VLANs)
+                            </h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                - **VLAN 10 (HR - משאבי אנוש):** רשת רגישה הדורשת בידוד.<br>
+                                - **VLAN 20 (R&D - פיתוח):** רשת מהירה לגלישה וגישה למחשבי פיתוח.<br>
+                                - **VLAN 30 (DMZ - שרתים):** שרת ה-Web של הארגון חייב לשבת מאחורי NAT.
+                            </p>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                            <h3 class="text-emerald-400 font-bold mb-2 flex items-center gap-2">
+                                <i data-lucide="shield" class="w-5 h-5"></i>
+                                דרישות שרידות ואבטחה
+                            </h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                - **מניעת לופים:** STP יופעל וימנע קריסה במקרה של חיבורים כפולים.<br>
+                                - **ניתוב מאובטח:** תנועת המידע בין ה-VLAN-ים תבוצע רק דרך נתב מוגדר (Inter-VLAN).<br>
+                                - **תרגום כתובות:** שרת ה-Web יגלוש לעולם דרך IP ציבורי יחיד באמצעות NAT סטטי.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 bg-slate-900/50 p-5 rounded-xl border border-slate-800/80">
+                        <p class="text-xs text-slate-350 font-bold mb-3">שאלת פתיחה מאבחנת: מהו השלב הראשון הנכון ביותר שתבצע לפני כתיבת שורת קוד אחת בסיסקו?</p>
+                        <div class="flex flex-col gap-2">
+                            <button onclick="answerScenario(1)" class="bg-slate-950 hover:bg-slate-800 text-right border border-slate-700 text-slate-300 text-xs px-4 py-2.5 rounded transition-all">הקמת תרשים טופולוגיה לוגי מסודר וחלוקת טווח כתובות IP בצורה היררכית לכל VLAN.</button>
+                            <button onclick="answerScenario(2)" class="bg-slate-950 hover:bg-slate-800 text-right border border-slate-700 text-slate-300 text-xs px-4 py-2.5 rounded transition-all">חיבור כבלים פיזיים אקראיים ושיגור פקודות no shutdown בכל הראוטרים מיד.</button>
+                        </div>
+                        <div id="scenario-feedback" class="mt-4 hidden p-3 rounded-lg text-xs font-semibold"></div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end">
+                    <button onclick="switchStep(2)" class="bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-black px-6 py-3 rounded-xl flex items-center gap-2 transition-all">
+                        <span>פתח לוח תכנון VLAN וניתוב</span>
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: VLAN & ROUTING SPECIFICATION BOARD -->
+            <div id="step-2" class="step-container space-y-6 hidden">
+                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 md:p-8">
+                    <span class="text-yellow-400 text-xs font-bold uppercase tracking-wider">לוח תכנון ארכיטקטורה</span>
+                    <h2 class="text-2xl font-black text-white mt-2 mb-4">תכנון הקצאת הכתובות של CyberSecure</h2>
+                    
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        לפני שנקנפג את המתגים והראוטר, בואו נתכנן את ה**סאבנטים (Subnets)** של הארגון. הנה תוכנית ההקצאה המתוכננת שלכם:
+                    </p>
+
+                    <div class="space-y-4">
+                        <!-- Table for VLANs -->
+                        <div class="overflow-x-auto bg-slate-900 rounded-xl p-4 border border-slate-800">
+                            <table class="w-full text-right text-xs">
+                                <thead>
+                                    <tr class="border-b border-slate-800 text-slate-400 font-mono">
+                                        <th class="pb-2">מחלקה (VLAN)</th>
+                                        <th class="pb-2">מזהה (VLAN ID)</th>
+                                        <th class="pb-2">רשת IP (Subnet)</th>
+                                        <th class="pb-2">מסכת רשת (Mask)</th>
+                                        <th class="pb-2">שער ברירת מחדל (Gateway)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-300 space-y-2 font-mono">
+                                    <tr class="border-b border-slate-850/50">
+                                        <td class="py-3 font-sans text-pink-400 font-bold">HR (משאבי אנוש)</td>
+                                        <td class="py-3 text-pink-450 font-bold">10</td>
+                                        <td class="py-3">192.168.10.0/24</td>
+                                        <td class="py-3">255.255.255.0</td>
+                                        <td class="py-3 text-emerald-400">192.168.10.1</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-850/50">
+                                        <td class="py-3 font-sans text-cyan-400 font-bold">R&D (פיתוח)</td>
+                                        <td class="py-3 text-cyan-455 font-bold">20</td>
+                                        <td class="py-3">192.168.20.0/24</td>
+                                        <td class="py-3">255.255.255.0</td>
+                                        <td class="py-3 text-emerald-400">192.168.20.1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 font-sans text-yellow-500 font-bold">DMZ (שרתים)</td>
+                                        <td class="py-3 text-yellow-555 font-bold">30</td>
+                                        <td class="py-3">192.168.30.0/24</td>
+                                        <td class="py-3">255.255.255.0</td>
+                                        <td class="py-3 text-emerald-400">192.168.30.1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- NAT translation rules spec -->
+                        <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                            <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-1.5">
+                                <i data-lucide="shuffle" class="w-4 h-4 text-yellow-500"></i>
+                                מפרט חוקי ה-NAT הסטטי
+                            </h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                שרת ה-Web שלכם יושב ברשת הפנימית בכתובת <code>192.168.30.100</code>. 
+                                הראוטר יבצע תרגום NAT סטטי לכתובת הציבורית <code>82.80.1.100</code> כדי לאפשר ללקוחות באינטרנט הציבורי לגשת אליו ללא מגע ברשתות ה-HR והפיתוח הפנימיות.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between">
+                    <button onclick="switchStep(1)" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-bold px-5 py-3 rounded-xl flex items-center gap-2 transition-all">
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        <span>חזרה למפרט</span>
+                    </button>
+                    <button onclick="switchStep(3)" class="bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-black px-6 py-3 rounded-xl flex items-center gap-2 transition-all">
+                        <span>עבור למעבדת האימות</span>
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: INTERACTIVE TOPOLOGY & CONFIGURATION VALIDATOR -->
+            <div id="step-3" class="step-container space-y-6 hidden">
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 md:p-8">
+                    <span class="bg-yellow-900/60 border border-yellow-400/30 text-yellow-300 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-widest">מעבדת הסימולציה והתיקוף</span>
+                    <h2 class="text-2xl font-black text-white mt-3">סימולטור: הפעלת ה-Enterprise Network</h2>
+                    <p class="text-slate-400 text-sm mt-1">
+                        השלם את הגדרות שילוב ה-VLAN וה-NAT בראוטר ובמתגים כדי להזרים מידע בהצלחה בין כל חלקי הארגון ושרת ה-Web!
+                    </p>
+
+                    <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- Left configuration form -->
+                        <div class="lg:col-span-5 space-y-4">
+                            <!-- Switch 1 trunk/stp settings -->
+                            <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                                <h3 class="text-xs font-bold text-yellow-500 flex items-center gap-1.5 mb-3">
+                                    <i data-lucide="cpu" class="w-4 h-4"></i>
+                                    הגדרות מתג Switch 1
+                                </h3>
+                                <div class="space-y-3 text-xs">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1">פרוטוקול STP מוגדר במתגים:</label>
+                                        <select id="sim-stp" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white focus:outline-none focus:border-yellow-500">
+                                            <option value="none">-- בחר פרוטוקול --</option>
+                                            <option value="disabled">אין פרוטוקול (קריסה מלופים פיזיים)</option>
+                                            <option value="enabled">פרוטוקול STP מופעל (שבירת לופים ויציבות)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Router Inter-VLAN Subinterfaces -->
+                            <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                                <h3 class="text-xs font-bold text-cyan-400 flex items-center gap-1.5 mb-3">
+                                    <i data-lucide="router" class="w-4 h-4"></i>
+                                    הגדרות תת-ממשקים (Subinterfaces) בראוטר
+                                </h3>
+                                <div class="space-y-3 text-xs">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1">תיוג דוט-1-קיו (dot1Q encapsulation) עבור VLAN 10:</label>
+                                        <select id="sim-dot1q" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white focus:outline-none focus:border-cyan-500">
+                                            <option value="none">-- בחר הגדרה --</option>
+                                            <option value="correct">encapsulation dot1Q 10 (תיוג נכון)</option>
+                                            <option value="wrong">encapsulation dot1Q 20 (תיוג שגוי)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- static nat mapping inside/outside -->
+                            <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                                <h3 class="text-xs font-bold text-pink-400 flex items-center gap-1.5 mb-3">
+                                    <i data-lucide="shuffle" class="w-4 h-4"></i>
+                                    הגדרות NAT בראוטר
+                                </h3>
+                                <div class="space-y-3 text-xs">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1">פקודת ה-Static NAT לשרת ה-Web:</label>
+                                        <select id="sim-nat" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white focus:outline-none focus:border-pink-500">
+                                            <option value="none">-- בחר פקודה --</option>
+                                            <option value="correct">ip nat inside source static 192.168.30.100 82.80.1.100</option>
+                                            <option value="wrong">ip nat inside source static 82.80.1.100 192.168.30.100</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right visual representation and action -->
+                        <div class="lg:col-span-7 bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between min-h-[380px]">
+                            <div class="text-center">
+                                <span class="text-[10px] text-slate-500 font-mono">COMPLETE ENTERPRISE TOPOLOGY // CLASS_10</span>
+                                
+                                <!-- Topoloy drawing -->
+                                <div class="relative w-full h-56 bg-slate-950 border border-slate-850 rounded-xl mt-4 flex items-center justify-between px-6 overflow-hidden">
+                                    
+                                    <!-- Left side: Internal Enterprise (VLANs & Switches) -->
+                                    <div class="flex flex-col gap-8 z-10 text-right">
+                                        <div class="flex items-center gap-2">
+                                            <i data-lucide="monitor" class="w-7 h-7 text-pink-400"></i>
+                                            <div>
+                                                <p class="text-[9px] font-bold text-white leading-none">PC HR</p>
+                                                <span class="text-[8px] code-font text-slate-400">192.168.10.10</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <i data-lucide="monitor" class="w-7 h-7 text-cyan-400"></i>
+                                            <div>
+                                                <p class="text-[9px] font-bold text-white leading-none">PC R&D</p>
+                                                <span class="text-[8px] code-font text-slate-400">192.168.20.10</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Connecting Lines (dynamic colors/dashes) -->
+                                    <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                                        <line x1="20%" y1="30%" x2="50%" y2="50%" stroke="#1e293b" stroke-width="2"></line>
+                                        <line x1="20%" y1="70%" x2="50%" y2="50%" stroke="#1e293b" stroke-width="2"></line>
+                                        <line x1="50%" y1="50%" x2="80%" y2="50%" stroke="#1e293b" stroke-width="4" id="line-nat-active"></line>
+                                    </svg>
+
+                                    <!-- Center: The Core Router and Firewall -->
+                                    <div class="flex flex-col items-center z-10 bg-slate-900 border border-slate-700 p-3.5 rounded-full shadow-lg">
+                                        <i data-lucide="router" class="w-8 h-8 text-white"></i>
+                                        <span class="text-[8px] font-bold text-slate-400 mt-1">Core Gateway</span>
+                                    </div>
+
+                                    <!-- Right side: Web Server & Internet -->
+                                    <div class="flex flex-col gap-8 z-10 text-left">
+                                        <div class="flex items-center gap-2">
+                                            <div>
+                                                <p class="text-[9px] font-bold text-white leading-none">Web Server</p>
+                                                <span class="text-[8px] code-font text-slate-400">192.168.30.100</span>
+                                            </div>
+                                            <i data-lucide="server" class="w-7 h-7 text-yellow-500"></i>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div>
+                                                <p class="text-[9px] font-bold text-white leading-none">Public Web</p>
+                                                <span class="text-[8px] code-font text-slate-400">82.80.1.100</span>
+                                            </div>
+                                            <i data-lucide="globe" class="w-7 h-7 text-emerald-400 animate-pulse"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button onclick="triggerFinalNetworkTest()" class="w-full bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-black py-3 rounded-lg text-xs transition-all flex items-center justify-center gap-2 mt-4">
+                                <i data-lucide="activity" class="w-4 h-4"></i>
+                                <span>הפעל ובדוק את רשת הקמפוס!</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="sim-feedback" class="mt-4 hidden p-4 rounded-xl text-xs font-bold"></div>
+                </div>
+
+                <div class="flex justify-between">
+                    <button onclick="switchStep(2)" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-bold px-5 py-3 rounded-xl flex items-center gap-2 transition-all">
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        <span>חזרה לתוכנית</span>
+                    </button>
+                    <button id="btn-to-step-4" onclick="switchStep(4)" class="bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-black px-6 py-3 rounded-xl flex items-center gap-2 transition-all disabled:opacity-40 disabled:pointer-events-none" disabled>
+                        <span>המשך להגנת פרויקט מול AI</span>
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 4: THE GRADUATION DEFENSE CHAT (AI STEP) -->
+            <div id="step-4" class="step-container space-y-6 hidden">
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 md:p-8">
+                    <div class="flex justify-between items-start flex-wrap gap-4 border-b border-slate-800 pb-4">
+                        <div>
+                            <span class="bg-yellow-900/60 border border-yellow-400/30 text-yellow-300 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-widest">שלב ההגנה המסכם</span>
+                            <h2 class="text-2xl font-black text-white mt-3">ראיון הגנה: ארכיטקט הרשתות הראשי (Chief AI)</h2>
+                            <p class="text-slate-400 text-sm mt-1">
+                                בשלב הסיום, עליך להגן על הפרויקט שלך בראיון קצר עם מהנדס הרשתות הראשי. הוכח הבנה וזכה בתעודה!
+                            </p>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-800 px-3 py-1 rounded text-xs text-yellow-400 code-font flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 animate-pulse"></span>
+                            <span>STATUS: GRADUATION_EXAMINER</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6">
+                        <!-- Left Panel Examiner Guide -->
+                        <div class="md:col-span-4 bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-4 text-center">
+                            <div class="w-20 h-20 bg-yellow-900/20 border-2 border-yellow-500 rounded-full flex items-center justify-center mx-auto text-3xl">
+                                🎖️
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm">ארכיטקט ה-AI הראשי</h3>
+                                <p class="text-[11px] text-slate-400 mt-1">"כל הכבוד על הקמת הרשת. כדי לקבל את תעודת הגמר של האקדמיה, ענה לי בשפה חופשית על השאלה הבאה:"</p>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded border border-slate-850 text-right space-y-1">
+                                <span class="text-[10px] text-slate-500 block font-bold">השאלה להגנה:</span>
+                                <span class="text-xs text-yellow-550">כיצד שילבת בין חלוקת ה-VLANs (לצורכי אבטחה) לבין שער ה-Gateway הציבורי (NAT)? מה התפקיד של הראוטר במערכת הזו?</span>
+                            </div>
+                        </div>
+
+                        <!-- Right: Chat Interface -->
+                        <div class="md:col-span-8 bg-slate-900 border border-slate-800 rounded-xl flex flex-col h-[380px] overflow-hidden">
+                            <!-- Messages -->
+                            <div id="chat-messages" class="flex-grow overflow-y-auto p-4 space-y-3 flex flex-col font-sans">
+                                <!-- Bot Greeting -->
+                                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 max-w-[85%] self-start text-xs text-slate-300">
+                                    <span class="text-[10px] font-bold text-yellow-400 block mb-1">CHIEF_AI_ARCHITECT // </span>
+                                    שלום לך מהנדס יקר! אני מברך אותך על ההגעה לשלב הגנת פרויקט הגמר של האקדמיה לרשתות ותקשורת. 🚀
+                                    <br><br>
+                                    עברת דרך מדהימה. תסביר לי במילים שלך: <b>כיצד הראוטר מחבר בין ה-VLANs השונים (כמו HR ו-R&D) ומאפשר להם לצאת לעולם החיצוני דרך ה-NAT?</b> מה קורה לחבילה במסלול הזה?
+                                </div>
+                            </div>
+                            
+                            <!-- Input -->
+                            <div class="p-3 border-t border-slate-800 bg-slate-950 flex gap-2">
+                                <input type="text" id="chat-input" onkeypress="handleChatKey(event)" placeholder="הקלד כאן את הגנת הפרויקט שלך..." class="flex-grow bg-slate-900 text-white border border-slate-800 rounded-lg px-4 py-2 text-xs focus:outline-none focus:border-yellow-500">
+                                <button onclick="sendChatMessage()" class="bg-yellow-600 hover:bg-yellow-500 text-slate-950 px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-1.5 transition-all">
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Unlock Alert -->
+                    <div id="ai-bonus-alert" class="mt-4 hidden bg-yellow-950/40 border border-yellow-500/30 text-yellow-300 p-4 rounded-xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🎓</span>
+                            <div>
+                                <p class="font-bold">פרויקט הגמר אושר! (Graduation Approved)</p>
+                                <p class="text-xs opacity-80">הגנת בהצלחה על תכנון הרשת וזכית בתעודת המומחה הרשמית של האקדמיה.</p>
+                            </div>
+                        </div>
+                        <span class="font-mono text-xs text-yellow-400 font-bold">+150 XP</span>
+                    </div>
+
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="switchStep(3)" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-bold px-5 py-3 rounded-xl flex items-center gap-2 transition-all">
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        <span>חזרה למעבדה</span>
+                    </button>
+                    <button id="btn-to-step-5" onclick="switchStep(5)" class="bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-black px-6 py-3 rounded-xl flex items-center gap-2 transition-all disabled:opacity-40 disabled:pointer-events-none" disabled>
+                        <span>עבור לקבלת התעודה החגיגית!</span>
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 5: GRADUATION CERTIFICATE -->
+            <div id="step-5" class="step-container space-y-6 hidden">
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 md:p-8 no-print">
+                    <span class="text-yellow-400 text-xs font-bold uppercase tracking-wider">טקס סיום הלימודים</span>
+                    <h2 class="text-2xl font-black text-white mt-2 mb-4">ברכותינו, הגעת לקו הסיום!</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        השלמת בהצלחה את סדרת 10 שיעורי רשתות ותקשורת מחשבים של האקדמיה. הוכחת שליטה מלאה בתווך הפיזי, במתגים, בכתובות IP, בניתוב סטטי, ב-VLANs, ובפרוטוקולי STP ו-NAT. 
+                        תעודת הגמר הרשמית שלך מוכנה להורדה והדפסה להלן!
+                    </p>
+                </div>
+
+                <!-- Printable Certificate Layout -->
+                <div class="bg-slate-900 border-8 border-double border-yellow-500/50 p-8 rounded-2xl max-w-2xl mx-auto text-center relative overflow-hidden shadow-2xl shadow-yellow-500/10">
+                    <div class="absolute -right-20 -top-20 w-80 h-80 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <span class="text-yellow-400 text-xs tracking-widest uppercase font-mono font-bold block mb-4">// NET_ACADEMY GRADUATION CERTIFICATE //</span>
+                    
+                    <h1 class="text-3xl md:text-4xl font-black text-white tracking-wide mb-2">תעודת מהנדס רשתות מוסמך</h1>
+                    <p class="text-xs text-slate-400 italic">מוענקת בגאווה ובהערכה רבה לבוגר האקדמיה</p>
+                    
+                    <!-- Dynamic Student Name Placeholder -->
+                    <div class="my-8 py-2 border-b border-yellow-500/30 max-w-sm mx-auto">
+                        <input type="text" id="cert-student-name" placeholder="הקלד כאן את שמך המלא" class="w-full bg-transparent text-center text-xl md:text-2xl font-black text-yellow-400 border-none focus:outline-none focus:ring-0 placeholder-yellow-500/30">
+                    </div>
+
+                    <p class="text-slate-300 text-xs leading-relaxed max-w-md mx-auto">
+                        על השלמת סדרת 10 שיעורי פיתוח, בנייה וניתוב רשתות ארגוניות מתקדמות מהיסוד ועד לשליטה מלאה בטכנולוגיות סיסקו, חומות אש ופרוטוקולי אבטחה ושרידות של האינטרנט הגלובלי.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 mt-8 text-right font-mono text-[9px] text-slate-500 border-t border-slate-800/80 pt-6">
+                        <div>
+                            <span class="block font-bold text-slate-400">דירוג XP סופי:</span>
+                            <span id="cert-xp-lbl" class="text-yellow-400 font-bold">990 XP</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-slate-400">דרגה שהושגה:</span>
+                            <span id="cert-level-lbl" class="text-yellow-400 font-bold">ארכיטקט רשתות</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-slate-400">קוד חתימה:</span>
+                            <span class="text-emerald-400 font-bold">NET-ACAD-GRAD-SECURE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button inside step 5 (not printed) -->
+                <div class="flex flex-col sm:flex-row gap-3 justify-center mt-6 no-print">
+                    <button onclick="window.print()" class="bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-black py-2.5 px-6 rounded-lg text-xs transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="printer" class="w-4 h-4"></i>
+                        <span>הדפס/שמור את התעודה כ-PDF</span>
+                    </button>
+                    <button onclick="exportTeacherReport()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-6 rounded-lg border border-slate-800 text-xs transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>הורד דוח פרויקט סופי למורה</span>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-4 px-4 text-center no-print">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <p>© 2026 NET_ACADEMY - הדרך שלך לרשתות ותקשורת מחשבים</p>
+            <div class="flex gap-4">
+                <span>שיעור 10 מתוך 10</span>
+                <span>•</span>
+                <span class="text-yellow-500 font-bold">השלמת הסדרה בהצלחה!</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification system toast -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 border border-yellow-500 text-white px-4 py-3 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3">
+        <i data-lucide="info" class="w-5 h-5 text-yellow-400" id="toast-icon"></i>
+        <span id="toast-message" class="text-sm"></span>
+    </div>
+
+    <!-- MAIN JAVASCRIPT LOGIC -->
+    <script>
+        // State management
+        let xp = 0;
+        let activeStep = 1;
+        let currentLevel = "מנהל רשתות בכיר וארכיטקט STP";
+        let hasPassedSim = false;
+        let hasPassedAi = false;
+
+        const xpCounter = document.getElementById('xp-counter');
+        const userLevel = document.getElementById('user-level');
+        const levelBar = document.getElementById('level-bar');
+        const systemLog = document.getElementById('system-log');
+        const toastEl = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+
+        lucide.createIcons();
+
+        window.onload = function() {
+            loadSavedProgress();
+        };
+
+        function loadSavedProgress() {
+            const savedXp = localStorage.getItem('net_academy_l10_xp');
+            const savedStep = localStorage.getItem('net_academy_l10_step');
+            const savedLevel = localStorage.getItem('net_academy_l10_level');
+            const savedName = localStorage.getItem('net_academy_l10_student_name');
+
+            if (savedXp) {
+                xp = parseInt(savedXp);
+                xpCounter.innerText = xp;
+            } else {
+                xp = 745; // default starting XP from Lesson 9
+                xpCounter.innerText = xp;
+            }
+
+            if (savedLevel) {
+                currentLevel = savedLevel;
+                const lvlEl = document.getElementById('user-level');
+                if (lvlEl) lvlEl.innerText = currentLevel;
+                updateLevelUI();
+            } else {
+                const lvlEl = document.getElementById('user-level');
+                if (lvlEl) lvlEl.innerText = currentLevel;
+            }
+
+            if (savedName) {
+                document.getElementById('cert-student-name').value = savedName;
+            }
+
+            if (savedStep) {
+                switchStep(parseInt(savedStep));
+            } else {
+                switchStep(1);
+            }
+            addLog("התקדמות קודמת ודירוגי XP נטענו מהדפדפן.");
+        }
+
+        function saveProgress() {
+            localStorage.setItem('net_academy_l10_xp', xp);
+            localStorage.setItem('net_academy_l10_step', activeStep);
+            localStorage.setItem('net_academy_l10_level', currentLevel);
+            localStorage.setItem('net_academy_l10_student_name', document.getElementById('cert-student-name').value);
+        }
+
+        function resetProgress() {
+            if (confirm("האם ברצונך לאפס את התקדמות שיעור 10? כל הניקוד שהושג בשיעור יימחק.")) {
+                localStorage.removeItem('net_academy_l10_xp');
+                localStorage.removeItem('net_academy_l10_step');
+                localStorage.removeItem('net_academy_l10_level');
+                localStorage.removeItem('net_academy_l10_student_name');
+                
+                xp = 745;
+                activeStep = 1;
+                hasPassedSim = false;
+                hasPassedAi = false;
+                currentLevel = "מנהל רשתות בכיר וארכיטקט STP";
+
+                xpCounter.innerText = xp;
+                document.getElementById('user-level').innerText = currentLevel;
+                levelBar.style.width = "90%";
+                
+                document.getElementById('sim-stp').value = "none";
+                document.getElementById('sim-dot1q').value = "none";
+                document.getElementById('sim-nat').value = "none";
+                document.getElementById('cert-student-name').value = "";
+                
+                document.getElementById('btn-to-step-4').disabled = true;
+                document.getElementById('btn-to-step-5').disabled = true;
+                document.getElementById('sim-feedback').classList.add('hidden');
+                document.getElementById('ai-bonus-alert').classList.add('hidden');
+                
+                // Reset Chat
+                document.getElementById('chat-messages').innerHTML = `
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 max-w-[85%] self-start text-xs text-slate-300">
+                        <span class="text-[10px] font-bold text-yellow-400 block mb-1">CHIEF_AI_ARCHITECT // </span>
+                        שלום לך מהנדס יקר! אני מברך אותך על ההגעה לשלב הגנת פרויקט הגמר של האקדמיה לרשתות ותקשורת. 🚀
+                        <br><br>
+                        עברת דרך מדהימה. תסביר לי במילים שלך: <b>כיצד הראוטר מחבר בין ה-VLANs השונים (כמו HR ו-R&D) ומאפשר להם לצאת לעולם החיצוני דרך ה-NAT?</b> מה קורה לחבילה במסלול הזה?
+                    </div>
+                `;
+
+                switchStep(1);
+                showToast("ההתקדמות בשיעור 10 אופסה.");
+                addLog("כל התקדמות המשתמש בשיעור זה אופסה.");
+            }
+        }
+
+        function switchStep(stepNum) {
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`step-${i}`).classList.add('hidden');
+                const btn = document.getElementById(`btn-step-${i}`);
+                if (btn) {
+                    btn.className = "w-full text-right flex items-center justify-between p-3 rounded-lg bg-slate-900/40 border border-slate-800 text-slate-400 hover:bg-slate-900 hover:text-slate-200 transition-all";
+                }
+            }
+
+            document.getElementById(`step-${stepNum}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`btn-step-${stepNum}`);
+            if (activeBtn) {
+                activeBtn.className = "w-full text-right flex items-center justify-between p-3 rounded-lg bg-yellow-950/30 border border-yellow-500/40 text-yellow-300 transition-all font-bold";
+            }
+
+            activeStep = stepNum;
+            saveProgress();
+            addLog(`מעבר לשלב ${stepNum}.`);
+        }
+
+        function addLog(text) {
+            const time = new Date().toLocaleTimeString('he-IL', { hour12: false });
+            systemLog.innerHTML += `<p>[${time}] ${text}</p>`;
+            systemLog.scrollTop = systemLog.scrollHeight;
+        }
+
+        // Helper: Toast notifications
+        function showToast(message) {
+            toastMsg.innerText = message;
+            toastEl.classList.remove('translate-y-20', 'opacity-0');
+            toastEl.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toastEl.classList.remove('translate-y-0', 'opacity-100');
+                toastEl.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function addXP(amount) {
+            xp += amount;
+            xpCounter.innerText = xp;
+            
+            if (xp >= 950) {
+                currentLevel = "ארכיטקט רשתות מוסמך ובוגר האקדמיה!";
+                levelBar.style.width = "100%";
+            } else {
+                currentLevel = "מנהל רשתות בכיר וארכיטקט STP";
+                levelBar.style.width = "90%";
+            }
+            
+            document.getElementById('user-level').innerText = currentLevel;
+            updateLevelUI();
+            saveProgress();
+            showToast(`נוספו +${amount} נקודות XP!`);
+        }
+
+        function updateLevelUI() {
+            document.getElementById('share-code').innerText = `NET-ACAD-GRADUATE-XP${xp}`;
+            document.getElementById('cert-xp-lbl').innerText = `${xp} XP`;
+            document.getElementById('cert-level-lbl').innerText = currentLevel;
+        }
+
+        // STEP 1: Scenario response
+        function answerScenario(choice) {
+            const feedback = document.getElementById('scenario-feedback');
+            feedback.classList.remove('hidden', 'bg-red-950/40', 'text-red-300', 'bg-emerald-950/40', 'text-emerald-300');
+
+            if (choice === 1) {
+                feedback.className += ' bg-emerald-950/40 text-emerald-300 p-3 rounded-lg text-xs';
+                feedback.innerHTML = `🌟 <b>נכון מאוד!</b> תכנון לוגי מוקדם וחלוקת כתובות סאבנטים היררכית היא אבן היסוד של כל ארכיטקטורה מצליחה. זה מונע שגיאות קינפוג, חוסך זמן יקר ומונע סכסוכי כתובות בהמשך הדרך!`;
+                addXP(25);
+                addLog("מענה נכון על חידון פילוסופיית תכנון רשתות.");
+            } else {
+                feedback.className += ' bg-red-950/40 text-red-300 p-3 rounded-lg text-xs';
+                feedback.innerHTML = `❌ <b>גישה שגויה ומסוכנת!</b> עבודה ללא תכנון מוקדם בפרויקטים גדולים תמיד תגרום לסכסוכי כתובות, לופים פיזיים, קריסת תקשורת ושעות של דיבוג מורכב בקירות ובקוד.`;
+                addXP(5);
+            }
+        }
+
+        // STEP 3: Enterprise Config Testing Logic
+        function triggerFinalNetworkTest() {
+            const stp = document.getElementById('sim-stp').value;
+            const dot1q = document.getElementById('sim-dot1q').value;
+            const nat = document.getElementById('sim-nat').value;
+
+            addLog(`מריץ אימות קונפיגורציית קמפוס: STP [${stp}] | dot1Q [${dot1q}] | NAT [${nat}]`);
+
+            const feedback = document.getElementById('sim-feedback');
+            feedback.classList.remove('hidden', 'bg-red-950/40', 'text-red-300', 'bg-emerald-950/40', 'text-emerald-300');
+
+            const isStpOk = (stp === 'enabled');
+            const isDot1qOk = (dot1q === 'correct');
+            const isNatOk = (nat === 'correct');
+
+            if (isStpOk && isDot1qOk && isNatOk) {
+                // Color connecting line representing active flows
+                document.getElementById('line-nat-active').setAttribute('stroke', '#eab308');
+
+                feedback.className += ' bg-emerald-950/40 text-emerald-300';
+                feedback.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl">🌟</span>
+                        <div>
+                            <p class="font-bold">אימות רשת עבר בהצלחה מלאה (Enterprise Validation Success)!</p>
+                            <p class="text-[11px] opacity-90">ההגדרות שלכם מושלמות. הרשת יציבה וללא לופים (הודות ל-STP), ה-VLAN-ים מנותבים לוגית בצורה מאובטחת דרך הראוטר, ושרת ה-Web של הארגון נגיש לעולם החיצוני בצורה מאובטחת דרך חוק ה-Static NAT!</p>
+                        </div>
+                    </div>
+                `;
+                
+                if (!hasPassedSim) {
+                    addXP(80);
+                    hasPassedSim = true;
+                }
+                document.getElementById('btn-to-step-4').disabled = false;
+                addLog("אימות רשת הקמפוס המסכמת הושלם בהצלחה מרובה.");
+            } else {
+                feedback.className += ' bg-red-950/40 text-red-300';
+                let errors = [];
+                if (!isStpOk) errors.push("פרוטוקול STP כבוי או לא מוגדר. הדבר יוצר סופות שידור וקריסה אינסופית בחיבורים הכפולים שבין שני הבניינים.");
+                if (!isDot1qOk) errors.push("תיוג ה-dot1Q בתתי-הממשק של הראוטר שגוי. הראוטר לא מצליח לשייך חבילות ל-VLAN 10.");
+                if (!isNatOk) errors.push("חוק ה-Static NAT שגוי. לקוחות חיצוניים מקבלים Timeout בניסיון לגשת לכתובת שרת ה-Web.");
+
+                feedback.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span>❌</span>
+                        <div>
+                            <p class="font-bold">נכשלה בדיקת הרשת! קריסת מערכות זוהתה בקמפוס.</p>
+                            <ul class="list-disc pr-4 text-[11px] opacity-90 space-y-1 mt-1">
+                                ${errors.map(err => `<li>${err}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                addLog("נכשל אימות הרשת עקב שגיאות אבטחה, לופים או תרגום כתובות שגוי.");
+            }
+        }
+
+        // STEP 4: Chief AI Architect Defense chat
+        function handleChatKey(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const messageText = input.value.trim();
+            if (!messageText) return;
+
+            const messagesArea = document.getElementById('chat-messages');
+            messagesArea.innerHTML += `
+                <div class="bg-yellow-600 text-slate-950 p-3 rounded-xl max-w-[85%] self-end text-xs font-bold">
+                    <span class="text-[10px] font-bold text-slate-900 block mb-1">אתה // </span>
+                    ${messageText}
+                </div>
+            `;
+
+            input.value = '';
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            addLog("נשלחה הגנת פרויקט למהנדס הראשי.");
+
+            // Bot response loader
+            const typingId = "typing-" + Date.now();
+            messagesArea.innerHTML += `
+                <div id="${typingId}" class="text-slate-500 italic animate-pulse">
+                    ארכיטקט ה-AI בודק את ההסבר ומעריך את הבנתך...
+                </div>
+            `;
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+
+            setTimeout(() => {
+                document.getElementById(typingId).remove();
+                
+                let botResponse = "";
+                let isPassed = false;
+
+                const textLower = messageText.toLowerCase();
+
+                // Validation keywords representing deep knowledge
+                const keywordsGateway = ["gateway", "שער", "ראוטר", "inter-vlan", "תת-ממשק", "subinterface"];
+                const keywordsNat = ["nat", "תרגום", "ציבורי", "פרטי", "82.80", "192.168"];
+                const keywordsSecurity = ["אבטחה", "בידוד", "חסימה", "הפרדה", "firewall", "stp"];
+
+                const hasGateway = keywordsGateway.some(k => textLower.includes(k));
+                const hasNat = keywordsNat.some(k => textLower.includes(k));
+                const hasSecurity = keywordsSecurity.some(k => textLower.includes(k));
+
+                if (hasGateway && hasNat && hasSecurity) {
+                    botResponse = `🎯 <b>מדהים! פרויקט הגמר אושר בהצטיינות יתרה!</b><br><br>
+                    הוכחת הבנה פנומנלית של שילוב השכבות:<br>
+                    - הבנת שה<b>ראוטר</b> משמש כשומר סף המחבר בין ה-VLANs הלוגיים השונים ומנתב ביניהם בצורה מאובטחת.<br>
+                    - הסברת מעולה שה-<b>NAT</b> לוקח את הכתובת הפרטית ומגן עליה מאחורי IP ציבורי יחיד, מה שמונע חשיפה ישירה של הרשת הפנימית לאיומי סייבר.<br><br>
+                    אני גאה להעניק לך את **הסמכת המומחה הרשמית של האקדמיה לרשתות**! לחץ על כפתור "תעודת גמר" למעלה וקבל את התעודה החתומה שלך!`;
+                    isPassed = true;
+                } else if (hasGateway && hasInside) {
+                    botResponse = `הסבר טוב על ה-VLANs והראוטר, אבל מה תפקידו של ה<b>NAT</b> במערך האבטחה הגלובלי של הארגון? למה אנחנו צריכים אותו במעבר לאינטרנט החיצוני?`;
+                } else {
+                    botResponse = `תשובה מעניינת, אבל נסה להעמיק יותר ולהתייחס ישירות למונחים שלמדנו: <br>
+                    - איך הראוטר משמש כ<b>Gateway (שער ברירת מחדל)</b> בין ה-VLAN-ים המבודדים?<br>
+                    - ואיך ה-<b>NAT</b> מגן על השרתים שלנו מפני פולשים מבחוץ על ידי תרגום לכתובת ציבורית? תן עוד ניסיון!`;
+                }
+
+                messagesArea.innerHTML += `
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 max-w-[85%] self-start text-xs text-slate-300">
+                        <span class="text-[10px] font-bold text-emerald-400 block mb-1">CISCO_AI_EXPERT // </span>
+                        ${botResponse}
+                    </div>
+                `;
+                messagesArea.scrollTop = messagesArea.scrollHeight;
+
+                if (isPassed && !hasPassedAi) {
+                    hasPassedAi = true;
+                    addXP(100);
+                    document.getElementById('ai-bonus-alert').classList.remove('hidden');
+                    document.getElementById('btn-to-step-5').disabled = false;
+                    addLog("פרויקט הסיום אושר ודורג בציון 100% על ידי ה-AI Auditor.");
+                }
+
+            }, 2000);
+        }
+
+        // Copy Share Code
+        function copyShareCode() {
+            const code = document.getElementById('share-code').innerText;
+            const tempInput = document.createElement("input");
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast("קוד ההישג הועתק בהצלחה! שלח לחבר.");
+            addLog("קוד שיתוף הועתק ללוח.");
+        }
+
+        // Export Report to Teacher
+        function exportTeacherReport() {
+            const name = document.getElementById('cert-student-name').value;
+            const q1 = document.getElementById('reflection-q1').value;
+            const q2 = document.getElementById('reflection-q2').value;
+            
+            if (!name) {
+                alert("אנא הקלד את שמך המלא בתעודה לפני שמייצאים דוח למורה!");
+                return;
+            }
+
+            const reportText = `
+=============================================
+דוח מסכם - פרויקט גמר מסכם: רשת קמפוס ארגונית
+=============================================
+שם הבוגר/ת: ${name}
+דירוג XP סופי: ${xp} XP
+דרגה שהושגה: ${currentLevel}
+קוד חתימה קריפטוגרפי: NET-ACAD-GRAD-SECURE
+
+תשובות לרפלקציה:
+---------------------------------------------
+1. מדוע חיוני לשנות Priority ב-STP?
+תשובה: ${q1 || 'הושלם בהצלחה בסימולטור'}
+
+2. מה יקרה לפורט החסום ברגע שאחד הכבלים ייקרע?
+תשובה: ${q2 || 'הושלם בהצלחה בסימולטור'}
+
+---------------------------------------------
+פרויקט הסיום הושלם בהצלחה ואושר קריפטוגרפית.
+מיוצר עבור מורה תקשורת ורשתות - NET_ACADEMY
+=============================================
+            `;
+
+            const blob = new Blob([reportText], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `NET_ACADEMY_Graduation_Report_${name.replace(/ /g, '_')}.txt`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showToast("דוח פעילות הורד! העבר אותו למורה שלך.");
+            addLog("דוח פעילות הופק והורד למחשב המשתמש.");
+        }
+    </script>
+
+<!-- כפתור עזרה צף קבוע בפינה התחתונה עם אווטר מובנה -->
+<div class="fixed bottom-6 left-6 z-50 no-print">
+    <button id="openHelpModalBtn" class="flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg shadow-cyan-500/20 transition-all duration-300 transform hover:scale-105 group border border-cyan-400/30">
+        <!-- אווטר קטן בתוך הכפתור -->
+        <div class="w-8 h-8 rounded-full border border-white/40 overflow-hidden bg-slate-950 flex-shrink-0 shadow-inner">
+            <img src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="אווטר בוט עזרה" class="w-full h-full object-cover">
+        </div>
+        <span>בוט עזרה</span>
+    </button>
+</div>
+
+<!-- חלונית עזרה צפה (Modal) עם אווטר מורחב -->
+<div id="helpModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4 transition-all duration-300">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-sm w-full text-center relative shadow-2xl shadow-cyan-500/5 transform scale-95 transition-transform duration-300" id="helpModalContent">
+        <!-- כפתור סגירה X -->
+        <button id="closeHelpModalBtn" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-slate-800">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        
+        <!-- אווטר התמונה בחלונית -->
+        <div class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-cyan-400/50 p-1 bg-slate-950 shadow-lg shadow-cyan-500/20 overflow-hidden">
+            <img src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="תמונת בוט עזרה" class="w-full h-full object-cover rounded-full">
+        </div>
+
+        <h3 class="text-lg font-black text-white mb-2">צריך עזרה במשימה?</h3>
+        <p class="text-sm text-slate-400 mb-6 leading-relaxed">בוט העזרה הרשמי של האקדמיה זמין כעת כדי לענות על שאלות, להסביר מושגים ולכוון אותך לפתרון המלא!</p>
+        
+        <!-- כפתור הפניה לקישור הבוט -->
+        <a href="https://gemini.google.com/gem/167016ac4a4b/66c3b83daa7940ef?usp=sharing" target="_blank" class="w-full flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-black py-3 px-4 rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/10">
+            <span>הפעל את בוט העזרה</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+    </div>
+</div>
+
+<!-- סקריפט להפעלת החלונית -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('helpModal');
+        const modalContent = document.getElementById('helpModalContent');
+        const openBtn = document.getElementById('openHelpModalBtn');
+        const closeBtn = document.getElementById('closeHelpModalBtn');
+
+        if(openBtn && modal && modalContent && closeBtn) {
+            openBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                setTimeout(() => modalContent.classList.remove('scale-95'), 10);
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modalContent.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 150);
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modalContent.classList.add('scale-95');
+                    setTimeout(() => modal.classList.add('hidden'), 150);
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
