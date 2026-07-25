@@ -21,19 +21,21 @@
         }
         .code-font {
             font-family: 'JetBrains Mono', monospace;
+            direction: ltr;
+            text-align: left;
         }
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f5f9;
+            background: #1e293b;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+            background: #475569;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #64748b;
         }
     </style>
 </head>
@@ -75,7 +77,7 @@
             </div>
         </div>
 
-        <!-- NAVIGATION TABS (Style matching the image) -->
+        <!-- NAVIGATION TABS -->
         <div class="bg-slate-50 border-t border-slate-200/80 px-4 py-2">
             <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto pb-1 text-xs font-bold">
                 <button onclick="switchTab('spec')" id="tab-spec" class="tab-btn bg-red-600 text-white px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm transition-all">
@@ -106,8 +108,8 @@
         </div>
     </header>
 
-    <!-- MAIN WORKSPACE -->
-    <main class="max-w-7xl w-full mx-auto px-4 py-6 flex-grow">
+    <!-- MAIN WORKSPACE CONTAINER -->
+    <main class="max-w-7xl w-full mx-auto px-4 py-6 flex-grow pb-80">
         
         <!-- SECTION 1: SPECIFICATION & OVERVIEW -->
         <div id="sec-spec" class="tab-content space-y-6">
@@ -121,7 +123,7 @@
                     אתם משמשים כארכיטקטי הרשת הראשיים. משימתכם היא לתכנן ולהגדיר מאפס את רשת התקשורת הארגונית הכוללת שני סגמנטים פנימיים (מכירות ופיתוח), רשת שרתים (DMZ), ניתוב Inter-VLAN באמצעות מתודולוגיית Router-on-a-Stick, תרגום כתובות NAT לאינטרנט, והגדרת ACL לאבטחת הגישה לשרתים.
                 </p>
 
-                <!-- TOPOLOGY SUMMARY CARDS (Style matching the image) -->
+                <!-- TOPOLOGY SUMMARY CARDS -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <div class="flex items-center gap-2 text-slate-800 font-bold text-sm mb-2">
@@ -160,7 +162,7 @@
                     </div>
                 </div>
 
-                <!-- AHOOAN TIP BOX (Like in the screenshot) -->
+                <!-- AHOOAN TIP BOX -->
                 <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-3">
                     <span class="text-2xl flex-shrink-0">🔥</span>
                     <div>
@@ -193,11 +195,11 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
-                            <input type="text" id="ip-pc-sales" value="192.168.10.10" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
+                            <input type="text" id="ip-pc-sales" value="192.168.10.10" onchange="updateTerminalFromInputs()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
-                            <select id="gw-pc-sales" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
+                            <select id="gw-pc-sales" onchange="updateTerminalFromInputs()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
                                 <option value="wrong">192.168.20.1</option>
                                 <option value="correct" selected>192.168.10.1</option>
                                 <option value="wrong2">192.168.30.1</option>
@@ -215,11 +217,11 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
-                            <input type="text" id="ip-pc-dev" value="192.168.20.20" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
+                            <input type="text" id="ip-pc-dev" value="192.168.20.20" onchange="updateTerminalFromInputs()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
-                            <select id="gw-pc-dev" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
+                            <select id="gw-pc-dev" onchange="updateTerminalFromInputs()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
                                 <option value="correct" selected>192.168.20.1</option>
                                 <option value="wrong">192.168.10.1</option>
                                 <option value="wrong2">192.168.30.1</option>
@@ -247,12 +249,12 @@
                             <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער למכירות</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <select id="roas-vlan10-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                            <select id="roas-vlan10-encap" onchange="updateTerminalFromInputs()" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
                                 <option value="none">-- בחר תיוג Encap --</option>
                                 <option value="correct">encapsulation dot1Q 10</option>
                                 <option value="wrong">encapsulation dot1Q 20</option>
                             </select>
-                            <input type="text" id="roas-vlan10-ip" value="192.168.10.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
+                            <input type="text" id="roas-vlan10-ip" value="192.168.10.1 255.255.255.0" onchange="updateTerminalFromInputs()" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
                         </div>
                     </div>
 
@@ -263,12 +265,12 @@
                             <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער לפיתוח</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <select id="roas-vlan20-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                            <select id="roas-vlan20-encap" onchange="updateTerminalFromInputs()" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
                                 <option value="none">-- בחר תיוג Encap --</option>
                                 <option value="correct">encapsulation dot1Q 20</option>
                                 <option value="wrong">encapsulation dot1Q 10</option>
                             </select>
-                            <input type="text" id="roas-vlan20-ip" value="192.168.20.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
+                            <input type="text" id="roas-vlan20-ip" value="192.168.20.1 255.255.255.0" onchange="updateTerminalFromInputs()" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
                         </div>
                     </div>
 
@@ -278,7 +280,7 @@
                             <span class="font-bold text-xs text-slate-800">מצב הפורט במתג המחובר לראוטר:</span>
                             <p class="text-[11px] text-slate-500">מה הגדרת ה-Switchport הנדרשת במתג בפורט המחובר לראוטר?</p>
                         </div>
-                        <select id="sw-trunk-mode" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                        <select id="sw-trunk-mode" onchange="updateTerminalFromInputs()" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
                             <option value="none">-- בחר מצב פורט --</option>
                             <option value="access">switchport mode access</option>
                             <option value="correct">switchport mode trunk</option>
@@ -305,7 +307,7 @@
                         <i data-lucide="shuffle" class="w-4 h-4 text-purple-500"></i> חוק Static NAT לשרת ה-Web
                     </h4>
                     <p class="text-xs text-slate-500">בחרו את פקודת התרגום הנכונה מכתובת פנימית <code class="code-font">192.168.30.100</code> לציבורית <code class="code-font">212.143.1.50</code>:</p>
-                    <select id="nat-cmd" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold code-font">
+                    <select id="nat-cmd" onchange="updateTerminalFromInputs()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold code-font">
                         <option value="none">-- בחר פקודת NAT --</option>
                         <option value="correct">ip nat inside source static 192.168.30.100 212.143.1.50</option>
                         <option value="wrong">ip nat inside source static 212.143.1.50 192.168.30.100</option>
@@ -322,7 +324,7 @@
                     <div class="space-y-2 text-xs">
                         <div class="flex items-center gap-2">
                             <span class="w-24 font-bold text-slate-700">כלל 1 (VLAN 10):</span>
-                            <select id="acl-vlan10" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
+                            <select id="acl-vlan10" onchange="updateTerminalFromInputs()" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
                                 <option value="none">-- בחר פעולה --</option>
                                 <option value="correct">access-list 100 deny ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
                                 <option value="wrong">access-list 100 permit ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
@@ -330,7 +332,7 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="w-24 font-bold text-slate-700">כלל 2 (כל שאר התנועה):</span>
-                            <select id="acl-default" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
+                            <select id="acl-default" onchange="updateTerminalFromInputs()" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
                                 <option value="none">-- בחר פעולה --</option>
                                 <option value="correct">access-list 100 permit ip any any</option>
                                 <option value="wrong">access-list 100 deny ip any any</option>
@@ -382,7 +384,7 @@
             </div>
         </div>
 
-        <!-- SECTION 6: 10 REFLECTION QUESTIONS & PADLET -->
+        <!-- SECTION 6: REFLECTION QUESTIONS -->
         <div id="sec-reflection" class="tab-content hidden space-y-6">
             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
                 <div>
@@ -395,59 +397,49 @@
 
                 <!-- 10 QUESTIONS GRID -->
                 <div class="space-y-4">
-                    <!-- Q1 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">1. מהו התפקיד המרכזי של תתי-הממשקים (Subinterfaces) בארכיטקטורת Router-on-a-Stick?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q2 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">2. מדוע חובה להגדיר Switchport Mode Trunk בפורט המחובר מהמתג לראוטר?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q3 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">3. מה יקרה אם נשכח לרשום את הפקודה encapsulation dot1Q 10 בתת-הממשק של VLAN 10?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q4 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">4. מה ההבדל בין Static NAT ל-PAT (Port Address Translation) ומתי נשתמש בכל אחד?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q5 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">5. כיצד רשימת אקסס-ליסט (ACL) מגנה על שרת ה-DMZ מפני פגיעות ברשתות הפנימיות?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q6 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">6. מהי חשיבות הכלל Implicit Deny בסוף כל רשימת ACL?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q7 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">7. הסבירו מה קורה לחבילת מידע (Packet) משלב יציאתה מ-PC-Dev עד הגעתה לשרת ה-Web ב-DMZ.</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q8 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">8. מהו תפקידו של ה-Default Gateway בהעברת מידע בין רשתות שונות?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q9 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">9. מה היתרון בחלוקת ארגון ל-VLANs נפרדים מבחינת אבטחה ועומסי שידור (Broadcast Domains)?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
-                    <!-- Q10 -->
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                         <label class="block font-bold text-xs text-slate-800 mb-2">10. רפלקציה אישית: מה היה האתגר הגדול ביותר עבורכם בבניית המעבדה המסכמת וכיצד פתרתם אותו?</label>
                         <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                     </div>
                 </div>
 
-                <!-- PADLET INTEGRATION AREA (FOR TEACHER) -->
+                <!-- PADLET INTEGRATION AREA -->
                 <div class="border-2 border-dashed border-cyan-300 bg-cyan-50/50 rounded-2xl p-6 text-center space-y-3">
                     <div class="w-12 h-12 bg-cyan-500 text-white rounded-full flex items-center justify-center mx-auto shadow-md">
                         <i data-lucide="layout" class="w-6 h-6"></i>
@@ -463,9 +455,51 @@
             </div>
         </div>
 
+        <!-- NEW SMART PACKET TRACER TERMINAL (Exact Area Specified in Image) -->
+        <div class="mt-8 bg-slate-900 border-2 border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col font-sans">
+            <!-- TERMINAL HEADER -->
+            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="flex gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <span class="text-xs font-bold text-slate-300 mr-2 flex items-center gap-1.5 code-font">
+                        <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i> CISCO_CLI_TERMINAL // PACKET_TRACER_SIM
+                    </span>
+                </div>
+                <div class="flex items-center gap-2 text-[11px] font-bold text-slate-400">
+                    <span class="bg-slate-800 text-cyan-400 px-2 py-0.5 rounded border border-slate-700">עברית מימין | פקודות משמאל ⚡</span>
+                    <button onclick="clearTerminal()" class="hover:text-white transition-colors flex items-center gap-1 bg-slate-800 px-2 py-0.5 rounded">
+                        <i data-lucide="trash-2" class="w-3 h-3"></i> ניקוי
+                    </button>
+                </div>
+            </div>
+
+            <!-- TERMINAL LOG BODY -->
+            <div id="cli-log" class="p-4 bg-slate-950/90 h-64 overflow-y-auto space-y-2 text-xs code-font text-slate-200 border-b border-slate-800">
+                <div class="text-slate-500 border-b border-slate-800/80 pb-2 flex justify-between items-center dir-rtl">
+                    <span class="text-right text-emerald-400 font-sans">💻 חלונית המסוף החכמה פעילה! כל בחירה בטפסים תייצר פקודת Cisco תואמת, או הקלידו ישירות למטה:</span>
+                    <span class="text-left font-mono text-[10px] text-slate-500">SYSTEM_READY</span>
+                </div>
+                <div id="cli-output" class="space-y-1.5"></div>
+            </div>
+
+            <!-- MANUAL COMMAND INPUT FORM -->
+            <form onsubmit="handleManualCommand(event)" class="bg-slate-900 p-2.5 flex items-center gap-2">
+                <span class="text-cyan-400 code-font font-bold text-xs pl-2">Router(config)#</span>
+                <input type="text" id="manual-cli-input" placeholder="הקלד פקודה ידנית כאן (למשל: ip route 0.0.0.0 0.0.0.0 212.143.1.1)..." class="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-emerald-400 code-font focus:outline-none focus:border-cyan-500 transition-all">
+                <button type="submit" class="bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs px-4 py-1.5 rounded-lg transition-all flex items-center gap-1 font-sans">
+                    <span>הרץ פקודה</span>
+                    <i data-lucide="send" class="w-3 h-3"></i>
+                </button>
+            </form>
+        </div>
+
     </main>
 
-    <!-- FLOATING BOT WINDOW (Exact style matching the image) -->
+    <!-- FLOATING BOT WINDOW -->
     <div class="fixed bottom-12 left-4 z-50 w-80 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden font-sans">
         
         <!-- BOT HEADER -->
@@ -494,7 +528,7 @@
                 אתם מוזמנים לשאול אותי כל שאלה לגבי VLANs, Router-on-a-Stick, NAT, ACL ופיתרון תקלות!
             </p>
 
-            <!-- SKILL TAGS (Matching screenshot) -->
+            <!-- SKILL TAGS -->
             <div class="flex flex-wrap gap-1.5 text-[10px] font-bold">
                 <span class="bg-slate-100 border border-slate-200 text-slate-700 px-2 py-0.5 rounded">DNS</span>
                 <span class="bg-slate-100 border border-slate-200 text-slate-700 px-2 py-0.5 rounded">VLANs</span>
@@ -511,7 +545,7 @@
         </div>
     </div>
 
-    <!-- FOOTER (Matching style in screenshot) -->
+    <!-- FOOTER -->
     <footer class="bg-white border-t border-slate-200 py-3 px-4 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 font-semibold">
             <p>session: חוגגים הצלחה בתקשוב עם סהר // אקדמיית האחוואנים // משימת סיכום רשתות // בהצלחה 💪</p>
@@ -547,7 +581,6 @@
             const encap10 = document.getElementById('roas-vlan10-encap').value;
             const encap20 = document.getElementById('roas-vlan20-encap').value;
             const trunkMode = document.getElementById('sw-trunk-mode').value;
-            const natCmd = document.getElementById('nat-cmd').value;
             const aclVlan10 = document.getElementById('acl-vlan10').value;
 
             const time = new Date().toLocaleTimeString('he-IL');
@@ -561,6 +594,7 @@
                         <p class="text-emerald-400 font-bold">SUCCESS: Ping completed! R&D has full access to DMZ Web Server. (+50 Points)</p>
                     `;
                     updateScore(50);
+                    appendCmdToTerminal("ping 192.168.30.100", "הרצת בדיקת פינג ממוחשב הפיתוח (PC-Dev) לשרת ה-DMZ");
                 } else {
                     consoleEl.innerHTML += `
                         <p class="text-red-400">[${time}] PING 192.168.30.100 from 192.168.20.20 ... Destination Host Unreachable.</p>
@@ -575,6 +609,7 @@
                         <p class="text-emerald-400 font-bold">SUCCESS: ACL Blocked Sales correctly! Security requirement met. (+50 Points)</p>
                     `;
                     updateScore(50);
+                    appendCmdToTerminal("ping 192.168.30.100", "ניסיון גישה חסום מ-Sales על ידי ה-ACL");
                 } else {
                     consoleEl.innerHTML += `
                         <p class="text-red-400">[${time}] שגיאת אבטחה! מחלקת מכירות הצליחה להגיע ל-DMZ. רשימת ה-ACL אינה מוגדרת נכון!</p>
@@ -589,6 +624,90 @@
         function updateScore(pts) {
             currentScore = Math.min(100, currentScore + pts);
             document.getElementById('score-val').innerText = `${currentScore} / 100`;
+        }
+
+        // --- SMART TERMINAL LOGIC ---
+        function appendCmdToTerminal(cmdText, descHeb) {
+            const out = document.getElementById('cli-output');
+            const time = new Date().toLocaleTimeString('he-IL');
+            
+            const line = document.createElement('div');
+            line.className = "p-2 rounded bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-2";
+            
+            line.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">Router(config)#</span>
+                    <span class="text-amber-300 font-bold code-font">${cmdText}</span>
+                </div>
+                <div class="text-[11px] text-slate-400 font-sans flex items-center gap-2">
+                    <span class="bg-slate-800 text-emerald-400 px-2 py-0.5 rounded text-[10px]">${descHeb}</span>
+                    <span class="text-slate-600 font-mono text-[10px]">${time}</span>
+                </div>
+            `;
+            
+            out.appendChild(line);
+            const cliLog = document.getElementById('cli-log');
+            cliLog.scrollTop = cliLog.scrollHeight;
+        }
+
+        function updateTerminalFromInputs() {
+            // Check ROAS VLAN 10 Encap
+            const encap10 = document.getElementById('roas-vlan10-encap');
+            if (encap10 && encap10.value !== 'none') {
+                const ip10 = document.getElementById('roas-vlan10-ip').value;
+                const txt = encap10.options[encap10.selectedIndex].text;
+                appendCmdToTerminal(`interface g0/0.10\n ${txt}\n ip address ${ip10}`, "הגדרת תת-ממשק VLAN 10 בראוטר");
+            }
+
+            // Check ROAS VLAN 20 Encap
+            const encap20 = document.getElementById('roas-vlan20-encap');
+            if (encap20 && encap20.value !== 'none') {
+                const ip20 = document.getElementById('roas-vlan20-ip').value;
+                const txt = encap20.options[encap20.selectedIndex].text;
+                appendCmdToTerminal(`interface g0/0.20\n ${txt}\n ip address ${ip20}`, "הגדרת תת-ממשק VLAN 20 בראוטר");
+            }
+
+            // Check Switch Trunk Mode
+            const swTrunk = document.getElementById('sw-trunk-mode');
+            if (swTrunk && swTrunk.value !== 'none') {
+                const txt = swTrunk.options[swTrunk.selectedIndex].text;
+                appendCmdToTerminal(`interface g0/1\n ${txt}`, "הגדרת פורט Trunk במתג");
+            }
+
+            // Check NAT
+            const nat = document.getElementById('nat-cmd');
+            if (nat && nat.value !== 'none') {
+                const txt = nat.options[nat.selectedIndex].text;
+                appendCmdToTerminal(txt, "הגדרת Static NAT בראוטר");
+            }
+
+            // Check ACL VLAN 10
+            const acl10 = document.getElementById('acl-vlan10');
+            if (acl10 && acl10.value !== 'none') {
+                const txt = acl10.options[acl10.selectedIndex].text;
+                appendCmdToTerminal(txt, "הגדרת כלל חסימה ACL 100");
+            }
+
+            // Check ACL Default
+            const aclDef = document.getElementById('acl-default');
+            if (aclDef && aclDef.value !== 'none') {
+                const txt = aclDef.options[aclDef.selectedIndex].text;
+                appendCmdToTerminal(txt, "הגדרת כלל אישור ברירת מחדל ACL 100");
+            }
+        }
+
+        function handleManualCommand(e) {
+            e.preventDefault();
+            const input = document.getElementById('manual-cli-input');
+            const val = input.value.trim();
+            if (val) {
+                appendCmdToTerminal(val, "פקודה ידנית שהוקלדה על ידי התלמיד");
+                input.value = '';
+            }
+        }
+
+        function clearTerminal() {
+            document.getElementById('cli-output').innerHTML = '';
         }
     </script>
 </body>
