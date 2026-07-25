@@ -177,12 +177,14 @@
 
         <!-- SECTION 2: VLAN & IP CONFIGURATION -->
         <div id="sec-vlan-ip" class="tab-content hidden space-y-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <i data-lucide="network" class="w-5 h-5 text-blue-600"></i>
-                    משימה 1: הגדרת כתובות IP וחלוקת VLANs ברכיבי הקצה
-                </h3>
-                <p class="text-xs text-slate-500 mb-6">הגדירו את הכתובות ושערי ברירת המחדל (Default Gateway) המתאימים לכל תחנה:</p>
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <i data-lucide="network" class="w-5 h-5 text-blue-600"></i>
+                        משימה 1: הגדרת כתובות IP וחלוקת VLANs ברכיבי הקצה
+                    </h3>
+                    <p class="text-xs text-slate-500">הגדירו את הכתובות ושערי ברירת המחדל (Default Gateway) המתאימים לכל תחנה:</p>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- PC-Sales Config -->
@@ -195,11 +197,11 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
-                            <input type="text" id="ip-pc-sales" value="192.168.10.10" oninput="logIpChange('PC-Sales', this.value)" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
+                            <input type="text" id="ip-pc-sales" value="192.168.10.10" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
-                            <select id="gw-pc-sales" onchange="logSelectChange('Default Gateway (PC-Sales)', this)" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
+                            <select id="gw-pc-sales" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
                                 <option value="wrong">192.168.20.1</option>
                                 <option value="correct" selected>192.168.10.1</option>
                                 <option value="wrong2">192.168.30.1</option>
@@ -217,11 +219,11 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
-                            <input type="text" id="ip-pc-dev" value="192.168.20.20" oninput="logIpChange('PC-Dev', this.value)" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
+                            <input type="text" id="ip-pc-dev" value="192.168.20.20" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
-                            <select id="gw-pc-dev" onchange="logSelectChange('Default Gateway (PC-Dev)', this)" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
+                            <select id="gw-pc-dev" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
                                 <option value="correct" selected>192.168.20.1</option>
                                 <option value="wrong">192.168.10.1</option>
                                 <option value="wrong2">192.168.30.1</option>
@@ -229,17 +231,27 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- CHECK BUTTON (RED HIGHLIGHTED AREA IN YOUR IMAGE) -->
+                <div class="pt-2">
+                    <button onclick="applyIpConfig()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        <span>בדוק והחל פקודות במסוף</span>
+                    </button>
+                </div>
             </div>
         </div>
 
         <!-- SECTION 3: ROUTER-ON-A-STICK CONFIG -->
         <div id="sec-roas" class="tab-content hidden space-y-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <i data-lucide="router" class="w-5 h-5 text-emerald-600"></i>
-                    משימה 2: הגדרת Router-on-a-Stick בראוטר המרכזי
-                </h3>
-                <p class="text-xs text-slate-500 mb-6">ביחרו את הפקודות והתיוגים הנכונים עבור תתי-הממשקים (Subinterfaces) בראוטר:</p>
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <i data-lucide="router" class="w-5 h-5 text-emerald-600"></i>
+                        משימה 2: הגדרת Router-on-a-Stick בראוטר המרכזי
+                    </h3>
+                    <p class="text-xs text-slate-500">ביחרו את הפקודות והתיוגים הנכונים עבור תתי-הממשקים (Subinterfaces) בראוטר:</p>
+                </div>
 
                 <div class="space-y-4">
                     <!-- Subinterface g0/0.10 -->
@@ -249,12 +261,12 @@
                             <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער למכירות</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <select id="roas-vlan10-encap" onchange="logSelectChange('Subinterface g0/0.10 Encap', this)" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                            <select id="roas-vlan10-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
                                 <option value="none">-- בחר תיוג Encap --</option>
                                 <option value="correct">encapsulation dot1Q 10</option>
                                 <option value="wrong">encapsulation dot1Q 20</option>
                             </select>
-                            <input type="text" id="roas-vlan10-ip" value="192.168.10.1 255.255.255.0" oninput="logIpChange('Subinterface g0/0.10 IP', this.value)" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
+                            <input type="text" id="roas-vlan10-ip" value="192.168.10.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
                         </div>
                     </div>
 
@@ -265,12 +277,12 @@
                             <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער לפיתוח</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <select id="roas-vlan20-encap" onchange="logSelectChange('Subinterface g0/0.20 Encap', this)" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                            <select id="roas-vlan20-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
                                 <option value="none">-- בחר תיוג Encap --</option>
                                 <option value="correct">encapsulation dot1Q 20</option>
                                 <option value="wrong">encapsulation dot1Q 10</option>
                             </select>
-                            <input type="text" id="roas-vlan20-ip" value="192.168.20.1 255.255.255.0" oninput="logIpChange('Subinterface g0/0.20 IP', this.value)" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
+                            <input type="text" id="roas-vlan20-ip" value="192.168.20.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
                         </div>
                     </div>
 
@@ -280,12 +292,20 @@
                             <span class="font-bold text-xs text-slate-800">מצב הפורט במתג המחובר לראוטר:</span>
                             <p class="text-[11px] text-slate-500">מה הגדרת ה-Switchport הנדרשת במתג בפורט המחובר לראוטר?</p>
                         </div>
-                        <select id="sw-trunk-mode" onchange="logSelectChange('Switchport Mode', this)" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                        <select id="sw-trunk-mode" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
                             <option value="none">-- בחר מצב פורט --</option>
                             <option value="access">switchport mode access</option>
                             <option value="correct">switchport mode trunk</option>
                         </select>
                     </div>
+                </div>
+
+                <!-- CHECK BUTTON -->
+                <div class="pt-2">
+                    <button onclick="applyRoasConfig()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        <span>בדוק והחל פקודות במסוף</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -307,7 +327,7 @@
                         <i data-lucide="shuffle" class="w-4 h-4 text-purple-500"></i> חוק Static NAT לשרת ה-Web
                     </h4>
                     <p class="text-xs text-slate-500">בחרו את פקודת התרגום הנכונה מכתובת פנימית <code class="code-font">192.168.30.100</code> לציבורית <code class="code-font">212.143.1.50</code>:</p>
-                    <select id="nat-cmd" onchange="logSelectChange('Static NAT Command', this)" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold code-font">
+                    <select id="nat-cmd" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold code-font">
                         <option value="none">-- בחר פקודת NAT --</option>
                         <option value="correct">ip nat inside source static 192.168.30.100 212.143.1.50</option>
                         <option value="wrong">ip nat inside source static 212.143.1.50 192.168.30.100</option>
@@ -324,7 +344,7 @@
                     <div class="space-y-2 text-xs">
                         <div class="flex items-center gap-2">
                             <span class="w-24 font-bold text-slate-700">כלל 1 (VLAN 10):</span>
-                            <select id="acl-vlan10" onchange="logSelectChange('ACL Rule 1 (VLAN 10)', this)" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
+                            <select id="acl-vlan10" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
                                 <option value="none">-- בחר פעולה --</option>
                                 <option value="correct">access-list 100 deny ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
                                 <option value="wrong">access-list 100 permit ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
@@ -332,13 +352,21 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="w-24 font-bold text-slate-700">כלל 2 (כל שאר התנועה):</span>
-                            <select id="acl-default" onchange="logSelectChange('ACL Default Rule', this)" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
+                            <select id="acl-default" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
                                 <option value="none">-- בחר פעולה --</option>
                                 <option value="correct">access-list 100 permit ip any any</option>
                                 <option value="wrong">access-list 100 deny ip any any</option>
                             </select>
                         </div>
                     </div>
+                </div>
+
+                <!-- CHECK BUTTON -->
+                <div class="pt-2">
+                    <button onclick="applyNatAclConfig()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        <span>בדוק והחל פקודות במסוף</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -455,7 +483,7 @@
             </div>
         </div>
 
-        <!-- SMART PACKET TRACER TERMINAL (FIXED DIRECTION & PROMPT) -->
+        <!-- SMART PACKET TRACER TERMINAL -->
         <div class="mt-8 bg-slate-900 border-2 border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col font-sans">
             <!-- TERMINAL HEADER -->
             <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
@@ -480,13 +508,13 @@
             <!-- TERMINAL LOG BODY -->
             <div id="cli-log" class="p-4 bg-slate-950/90 h-64 overflow-y-auto space-y-2 text-xs border-b border-slate-800">
                 <div class="text-slate-500 border-b border-slate-800/80 pb-2 flex justify-between items-center text-right">
-                    <span class="text-emerald-400 font-sans font-bold">💻 חלונית המסוף החכמה פעילה! כל בחירה בטפסים תופיע כאן אוטומטית:</span>
+                    <span class="text-emerald-400 font-sans font-bold">💻 חלונית המסוף פעילה! לחץ על כפתורי ה-"בדוק" כדי להריץ את הבחירות ב-CLI:</span>
                     <span class="font-mono text-[10px] text-slate-500">SYSTEM_READY</span>
                 </div>
                 <div id="cli-output" class="space-y-1.5"></div>
             </div>
 
-            <!-- MANUAL COMMAND INPUT FORM (PACKET TRACER STYLE) -->
+            <!-- MANUAL COMMAND INPUT FORM -->
             <form onsubmit="handleManualCommand(event)" class="bg-slate-900 p-2.5 flex items-center gap-2" dir="ltr">
                 <span class="text-cyan-400 code-font font-bold text-xs pl-2 whitespace-nowrap">Router(config)#</span>
                 <input type="text" id="manual-cli-input" placeholder="Enter command manually (e.g., ip route 0.0.0.0 0.0.0.0 212.143.1.1)..." class="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-emerald-400 code-font focus:outline-none focus:border-cyan-500 transition-all">
@@ -499,7 +527,7 @@
 
     </main>
 
-    <!-- FLOATING BOT AVATAR & TOGGLEABLE WINDOW (FIXED NO OVERLAP) -->
+    <!-- FLOATING BOT AVATAR & TOGGLEABLE WINDOW -->
     <div class="fixed bottom-6 left-6 z-50 font-sans">
         
         <!-- BUBBLE AVATAR BUTTON ONLY -->
@@ -574,13 +602,11 @@
     <script>
         lucide.createIcons();
 
-        // TOGGLE BOT DIALOG WINDOW
         function toggleBotWindow() {
             const win = document.getElementById('bot-window');
             win.classList.toggle('hidden');
         }
 
-        // TAB SWITCHING LOGIC
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -594,61 +620,12 @@
             }
         }
 
-        // PING TEST SIMULATOR LOGIC
-        function runPingTest(testType) {
-            const consoleEl = document.getElementById('terminal-console');
-            
-            const gwSales = document.getElementById('gw-pc-sales').value;
-            const gwDev = document.getElementById('gw-pc-dev').value;
-            const encap10 = document.getElementById('roas-vlan10-encap').value;
-            const encap20 = document.getElementById('roas-vlan20-encap').value;
-            const trunkMode = document.getElementById('sw-trunk-mode').value;
-            const aclVlan10 = document.getElementById('acl-vlan10').value;
-
-            const time = new Date().toLocaleTimeString('he-IL');
-
-            if (testType === 'dev-to-dmz') {
-                if (gwDev === 'correct' && encap20 === 'correct' && trunkMode === 'correct') {
-                    consoleEl.innerHTML += `
-                        <p class="text-emerald-400">[${time}] PING 192.168.30.100 from 192.168.20.20 (R&D) with 32 bytes of data:</p>
-                        <p class="text-emerald-300">Reply from 192.168.30.100: bytes=32 time=2ms TTL=127</p>
-                        <p class="text-emerald-300">Reply from 192.168.30.100: bytes=32 time=1ms TTL=127</p>
-                        <p class="text-emerald-400 font-bold">SUCCESS: Ping completed! R&D has full access to DMZ Web Server. (+50 Points)</p>
-                    `;
-                    updateScore(50);
-                    appendCmdToTerminal("ping 192.168.30.100", "הרצת בדיקת פינג מ-PC-Dev לשרת ה-DMZ");
-                } else {
-                    consoleEl.innerHTML += `
-                        <p class="text-red-400">[${time}] PING 192.168.30.100 from 192.168.20.20 ... Destination Host Unreachable.</p>
-                        <p class="text-amber-400">שגיאה: בדקו את שער ברירת המחדל, תיוג Encap dot1Q 20 ומצב הפורט Trunk!</p>
-                    `;
-                }
-            } else if (testType === 'sales-to-dmz') {
-                if (aclVlan10 === 'correct') {
-                    consoleEl.innerHTML += `
-                        <p class="text-amber-400">[${time}] PING 192.168.30.100 from 192.168.10.10 (Sales) ...</p>
-                        <p class="text-red-400">Packet filtered by Access Control List 100 (Deny IP).</p>
-                        <p class="text-emerald-400 font-bold">SUCCESS: ACL Blocked Sales correctly! Security requirement met. (+50 Points)</p>
-                    `;
-                    updateScore(50);
-                    appendCmdToTerminal("ping 192.168.30.100", "ניסיון פינג חסום מ-Sales לפי כלל ה-ACL");
-                } else {
-                    consoleEl.innerHTML += `
-                        <p class="text-red-400">[${time}] שגיאת אבטחה! מחלקת מכירות הצליחה להגיע ל-DMZ. רשימת ה-ACL אינה מוגדרת נכון!</p>
-                    `;
-                }
-            }
-
-            consoleEl.scrollTop = consoleEl.scrollHeight;
-        }
-
         let currentScore = 0;
         function updateScore(pts) {
             currentScore = Math.min(100, currentScore + pts);
             document.getElementById('score-val').innerText = `${currentScore} / 100`;
         }
 
-        // --- SMART TERMINAL LOGIC (FIXED DIRECTION & AUTOMATIC SELECTION LOGGING) ---
         function appendCmdToTerminal(cmdText, descHeb) {
             const out = document.getElementById('cli-output');
             const time = new Date().toLocaleTimeString('he-IL');
@@ -672,25 +649,122 @@
             cliLog.scrollTop = cliLog.scrollHeight;
         }
 
-        // AUTOMATIC EVENT LISTENERS FOR SELECT DROPDOWNS
-        function logSelectChange(label, selectEl) {
-            if (!selectEl || selectEl.value === 'none') return;
+        // --- BUTTON CHECK LOGIC ---
+
+        // 1. APPLY IP CONFIG
+        function applyIpConfig() {
+            const ipSales = document.getElementById('ip-pc-sales').value;
+            const gwSalesSel = document.getElementById('gw-pc-sales');
+            const gwSalesTxt = gwSalesSel.options[gwSalesSel.selectedIndex].text;
+
+            const ipDev = document.getElementById('ip-pc-dev').value;
+            const gwDevSel = document.getElementById('gw-pc-dev');
+            const gwDevTxt = gwDevSel.options[gwDevSel.selectedIndex].text;
+
+            appendCmdToTerminal(`PC-Sales IP: ${ipSales} | Gateway: ${gwSalesTxt}`, "הגדרת כתובות PC-Sales");
+            appendCmdToTerminal(`PC-Dev IP: ${ipDev} | Gateway: ${gwDevTxt}`, "הגדרת כתובות PC-Dev");
             
-            let command = "";
-            if (selectEl.options[selectEl.selectedIndex]) {
-                command = selectEl.options[selectEl.selectedIndex].text;
-            }
-            
-            if (command && !command.startsWith('--')) {
-                appendCmdToTerminal(command, `בחירה בטופס: ${label}`);
+            if (gwSalesSel.value === 'correct' && gwDevSel.value === 'correct') {
+                updateScore(25);
             }
         }
 
-        // AUTOMATIC EVENT LISTENERS FOR IP INPUTS
-        function logIpChange(fieldName, value) {
-            if (value.trim().length > 7) {
-                appendCmdToTerminal(`ip address ${value}`, `עדכון כתובת: ${fieldName}`);
+        // 2. APPLY ROUTER-ON-A-STICK CONFIG
+        function applyRoasConfig() {
+            const encap10Sel = document.getElementById('roas-vlan10-encap');
+            const ip10 = document.getElementById('roas-vlan10-ip').value;
+            
+            const encap20Sel = document.getElementById('roas-vlan20-encap');
+            const ip20 = document.getElementById('roas-vlan20-ip').value;
+
+            const trunkSel = document.getElementById('sw-trunk-mode');
+
+            if (encap10Sel.value !== 'none') {
+                appendCmdToTerminal(`interface g0/0.10`, "תת-ממשק VLAN 10");
+                appendCmdToTerminal(encap10Sel.options[encap10Sel.selectedIndex].text, "תיוג dot1Q");
+                appendCmdToTerminal(`ip address ${ip10}`, "כתובת שער VLAN 10");
             }
+
+            if (encap20Sel.value !== 'none') {
+                appendCmdToTerminal(`interface g0/0.20`, "תת-ממשק VLAN 20");
+                appendCmdToTerminal(encap20Sel.options[encap20Sel.selectedIndex].text, "תיוג dot1Q");
+                appendCmdToTerminal(`ip address ${ip20}`, "כתובת שער VLAN 20");
+            }
+
+            if (trunkSel.value !== 'none') {
+                appendCmdToTerminal(trunkSel.options[trunkSel.selectedIndex].text, "הגדרת פורט במתג");
+            }
+
+            if (encap10Sel.value === 'correct' && encap20Sel.value === 'correct' && trunkSel.value === 'correct') {
+                updateScore(25);
+            }
+        }
+
+        // 3. APPLY NAT & ACL CONFIG
+        function applyNatAclConfig() {
+            const natSel = document.getElementById('nat-cmd');
+            const aclVlan10Sel = document.getElementById('acl-vlan10');
+            const aclDefaultSel = document.getElementById('acl-default');
+
+            if (natSel.value !== 'none') {
+                appendCmdToTerminal(natSel.options[natSel.selectedIndex].text, "הגדרת Static NAT");
+            }
+            if (aclVlan10Sel.value !== 'none') {
+                appendCmdToTerminal(aclVlan10Sel.options[aclVlan10Sel.selectedIndex].text, "כלל ACL לחסימת Sales");
+            }
+            if (aclDefaultSel.value !== 'none') {
+                appendCmdToTerminal(aclDefaultSel.options[aclDefaultSel.selectedIndex].text, "כלל ACL ברירת מחדל");
+            }
+
+            if (natSel.value === 'correct' && aclVlan10Sel.value === 'correct' && aclDefaultSel.value === 'correct') {
+                updateScore(25);
+            }
+        }
+
+        // PING SIMULATION LOGIC
+        function runPingTest(testType) {
+            const consoleEl = document.getElementById('terminal-console');
+            const gwSales = document.getElementById('gw-pc-sales').value;
+            const gwDev = document.getElementById('gw-pc-dev').value;
+            const encap10 = document.getElementById('roas-vlan10-encap').value;
+            const encap20 = document.getElementById('roas-vlan20-encap').value;
+            const trunkMode = document.getElementById('sw-trunk-mode').value;
+            const aclVlan10 = document.getElementById('acl-vlan10').value;
+
+            const time = new Date().toLocaleTimeString('he-IL');
+
+            if (testType === 'dev-to-dmz') {
+                if (gwDev === 'correct' && encap20 === 'correct' && trunkMode === 'correct') {
+                    consoleEl.innerHTML += `
+                        <p class="text-emerald-400">[${time}] PING 192.168.30.100 from 192.168.20.20 (R&D) with 32 bytes of data:</p>
+                        <p class="text-emerald-300">Reply from 192.168.30.100: bytes=32 time=2ms TTL=127</p>
+                        <p class="text-emerald-300">Reply from 192.168.30.100: bytes=32 time=1ms TTL=127</p>
+                        <p class="text-emerald-400 font-bold">SUCCESS: Ping completed! R&D has full access to DMZ Web Server.</p>
+                    `;
+                    appendCmdToTerminal("ping 192.168.30.100", "הרצת בדיקת פינג מ-PC-Dev לשרת ה-DMZ");
+                    updateScore(25);
+                } else {
+                    consoleEl.innerHTML += `
+                        <p class="text-red-400">[${time}] PING 192.168.30.100 from 192.168.20.20 ... Destination Host Unreachable.</p>
+                        <p class="text-amber-400">שגיאה: בדקו את שער ברירת המחדל, תיוג Encap dot1Q 20 ומצב הפורט Trunk!</p>
+                    `;
+                }
+            } else if (testType === 'sales-to-dmz') {
+                if (aclVlan10 === 'correct') {
+                    consoleEl.innerHTML += `
+                        <p class="text-amber-400">[${time}] PING 192.168.30.100 from 192.168.10.10 (Sales) ...</p>
+                        <p class="text-red-400">Packet filtered by Access Control List 100 (Deny IP).</p>
+                        <p class="text-emerald-400 font-bold">SUCCESS: ACL Blocked Sales correctly! Security requirement met.</p>
+                    `;
+                    appendCmdToTerminal("ping 192.168.30.100", "ניסיון פינג חסום מ-Sales לפי כלל ה-ACL");
+                } else {
+                    consoleEl.innerHTML += `
+                        <p class="text-red-400">[${time}] שגיאת אבטחה! מחלקת מכירות הצליחה להגיע ל-DMZ. רשימת ה-ACL אינה מוגדרת נכון!</p>
+                    `;
+                }
+            }
+
+            consoleEl.scrollTop = consoleEl.scrollHeight;
         }
 
         function handleManualCommand(e) {
