@@ -111,418 +111,442 @@
     <!-- MAIN WORKSPACE CONTAINER -->
     <main class="max-w-7xl w-full mx-auto px-4 py-6 flex-grow">
         
-        <!-- SECTION 1: SPECIFICATION & OVERVIEW -->
-        <div id="sec-spec" class="tab-content space-y-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <div class="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">
-                    <i data-lucide="compass" class="w-4 h-4"></i>
-                    תרחיש הארכיטקטורה המרכזי
-                </div>
-                <h2 class="text-2xl font-black text-slate-900 mb-4">הקמת תשתית תקשורת מאובטחת לחברת CyberEnterprise</h2>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                    אתם משמשים כארכיטקטי הרשת הראשיים. משימתכם היא לתכנן ולהגדיר מאפס את רשת התקשורת הארגונית הכוללת שני סגמנטים פנימיים (מכירות ופיתוח), רשת שרתים (DMZ), ניתוב Inter-VLAN באמצעות מתודולוגיית Router-on-a-Stick, תרגום כתובות NAT לאינטרנט, והגדרת ACL לאבטחת הגישה לשרתים.
-                </p>
-
-                <!-- TOPOLOGY SUMMARY CARDS -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <div class="flex items-center gap-2 text-slate-800 font-bold text-sm mb-2">
-                            <i data-lucide="users" class="w-4 h-4 text-blue-500"></i>
-                            VLAN 10: Sales (מכירות)
-                        </div>
-                        <ul class="text-xs text-slate-500 space-y-1">
-                            <li>• טווח רשת: <code class="code-font text-blue-600">192.168.10.0/24</code></li>
-                            <li>• מורשה גישה לרשת האינטרנט דרך NAT.</li>
-                            <li>• <strong class="text-red-600">חסום ב-ACL</strong> מגישה ישירה לשרתי ה-DMZ!</li>
-                        </ul>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            
+            <!-- PERSISTENT SPECIFICATION SIDEBAR (Visible in tabs 1-5, hidden in reflection tab) -->
+            <div id="persistent-spec-sidebar" class="lg:col-span-1 space-y-4 lg:sticky lg:top-24">
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+                    <div class="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider border-b border-slate-100 pb-2">
+                        <i data-lucide="compass" class="w-4 h-4"></i>
+                        מפרט הארכיטקטורה (מלווה תרגיל)
                     </div>
-
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <div class="flex items-center gap-2 text-slate-800 font-bold text-sm mb-2">
-                            <i data-lucide="code" class="w-4 h-4 text-emerald-500"></i>
-                            VLAN 20: R&D (פיתוח)
-                        </div>
-                        <ul class="text-xs text-slate-500 space-y-1">
-                            <li>• טווח רשת: <code class="code-font text-emerald-600">192.168.20.0/24</code></li>
-                            <li>• מורשה גישה מלאה לשרת ה-Web ב-DMZ.</li>
-                            <li>• מורשה גישה לאינטרנט הציבורי.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <div class="flex items-center gap-2 text-slate-800 font-bold text-sm mb-2">
-                            <i data-lucide="server" class="w-4 h-4 text-purple-500"></i>
-                            VLAN 30: DMZ (שרתים)
-                        </div>
-                        <ul class="text-xs text-slate-500 space-y-1">
-                            <li>• טווח רשת: <code class="code-font text-purple-600">192.168.30.0/24</code></li>
-                            <li>• מציג שרת Web פנימי בכתובת <code class="code-font">192.168.30.100</code></li>
-                            <li>• מתורגם ב-Static NAT לכתובת ציבורית <code class="code-font">212.143.1.50</code>.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- AHOOAN TIP BOX -->
-                <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-3">
-                    <span class="text-2xl flex-shrink-0">🔥</span>
-                    <div>
-                        <h4 class="font-bold text-amber-950 mb-1">טיפ מטורלל של האחוואנים!</h4>
-                        <p class="leading-relaxed">
-                            זכרו! ב-Router-on-a-Stick, הממשק הפיזי של הראוטר המחובר למתג חייב להיות ללא כתובת IP משלו, ורק תתי-הממשקים (Subinterfaces) מקבלים כתובות IP ושרשורי תיוג <code class="code-font font-bold">encapsulation dot1Q</code>!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 2: VLAN & IP CONFIGURATION -->
-        <div id="sec-vlan-ip" class="tab-content hidden space-y-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
-                <div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                        <i data-lucide="network" class="w-5 h-5 text-blue-600"></i>
-                        משימה 1: הגדרת כתובות IP וחלוקת VLANs ברכיבי הקצה
-                    </h3>
-                    <p class="text-xs text-slate-500">הגדירו את הכתובות ושערי ברירת המחדל (Default Gateway) המתאימים לכל תחנה:</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- PC-Sales Config -->
-                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
-                        <div class="flex items-center justify-between border-b pb-2 border-slate-200">
-                            <span class="font-bold text-xs text-blue-700 flex items-center gap-1.5">
-                                <i data-lucide="laptop" class="w-4 h-4"></i> PC-Sales (VLAN 10)
-                            </span>
-                            <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full">מכירות</span>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
-                            <input type="text" id="ip-pc-sales" value="192.168.10.10" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
-                            <select id="gw-pc-sales" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
-                                <option value="wrong">192.168.20.1</option>
-                                <option value="correct" selected>192.168.10.1</option>
-                                <option value="wrong2">192.168.30.1</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- PC-Dev Config -->
-                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
-                        <div class="flex items-center justify-between border-b pb-2 border-slate-200">
-                            <span class="font-bold text-xs text-emerald-700 flex items-center gap-1.5">
-                                <i data-lucide="laptop" class="w-4 h-4"></i> PC-Dev (VLAN 20)
-                            </span>
-                            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">פיתוח</span>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
-                            <input type="text" id="ip-pc-dev" value="192.168.20.20" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
-                            <select id="gw-pc-dev" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
-                                <option value="correct" selected>192.168.20.1</option>
-                                <option value="wrong">192.168.10.1</option>
-                                <option value="wrong2">192.168.30.1</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CHECK BUTTON (RED HIGHLIGHTED AREA IN YOUR IMAGE) -->
-                <div class="pt-2">
-                    <button onclick="applyIpConfig()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
-                        <i data-lucide="check-circle" class="w-4 h-4"></i>
-                        <span>בדוק והחל פקודות במסוף</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 3: ROUTER-ON-A-STICK CONFIG -->
-        <div id="sec-roas" class="tab-content hidden space-y-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
-                <div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                        <i data-lucide="router" class="w-5 h-5 text-emerald-600"></i>
-                        משימה 2: הגדרת Router-on-a-Stick בראוטר המרכזי
-                    </h3>
-                    <p class="text-xs text-slate-500">ביחרו את הפקודות והתיוגים הנכונים עבור תתי-הממשקים (Subinterfaces) בראוטר:</p>
-                </div>
-
-                <div class="space-y-4">
-                    <!-- Subinterface g0/0.10 -->
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col md:flex-row items-md-center justify-between gap-4">
-                        <div>
-                            <span class="code-font font-bold text-xs text-blue-600">Subinterface GigabitEthernet 0/0.10 (VLAN 10)</span>
-                            <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער למכירות</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <select id="roas-vlan10-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
-                                <option value="none">-- בחר תיוג Encap --</option>
-                                <option value="correct">encapsulation dot1Q 10</option>
-                                <option value="wrong">encapsulation dot1Q 20</option>
-                            </select>
-                            <input type="text" id="roas-vlan10-ip" value="192.168.10.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
-                        </div>
-                    </div>
-
-                    <!-- Subinterface g0/0.20 -->
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col md:flex-row items-md-center justify-between gap-4">
-                        <div>
-                            <span class="code-font font-bold text-xs text-emerald-600">Subinterface GigabitEthernet 0/0.20 (VLAN 20)</span>
-                            <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער לפיתוח</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <select id="roas-vlan20-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
-                                <option value="none">-- בחר תיוג Encap --</option>
-                                <option value="correct">encapsulation dot1Q 20</option>
-                                <option value="wrong">encapsulation dot1Q 10</option>
-                            </select>
-                            <input type="text" id="roas-vlan20-ip" value="192.168.20.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
-                        </div>
-                    </div>
-
-                    <!-- Trunk port check -->
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-center justify-between">
-                        <div>
-                            <span class="font-bold text-xs text-slate-800">מצב הפורט במתג המחובר לראוטר:</span>
-                            <p class="text-[11px] text-slate-500">מה הגדרת ה-Switchport הנדרשת במתג בפורט המחובר לראוטר?</p>
-                        </div>
-                        <select id="sw-trunk-mode" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
-                            <option value="none">-- בחר מצב פורט --</option>
-                            <option value="access">switchport mode access</option>
-                            <option value="correct">switchport mode trunk</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- CHECK BUTTON -->
-                <div class="pt-2">
-                    <button onclick="applyRoasConfig()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
-                        <i data-lucide="check-circle" class="w-4 h-4"></i>
-                        <span>בדוק והחל פקודות במסוף</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 4: NAT & ACL CONFIGURATION -->
-        <div id="sec-nat-acl" class="tab-content hidden space-y-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
-                <div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                        <i data-lucide="shield-check" class="w-5 h-5 text-purple-600"></i>
-                        משימה 3: הגדרות NAT ורשימות אבטחה (ACL)
-                    </h3>
-                    <p class="text-xs text-slate-500">הגדירו את חוק ה-Static NAT לשרתי ה-DMZ ואת כללי ה-ACL הנדרשים:</p>
-                </div>
-
-                <!-- NAT Config -->
-                <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 space-y-3">
-                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
-                        <i data-lucide="shuffle" class="w-4 h-4 text-purple-500"></i> חוק Static NAT לשרת ה-Web
-                    </h4>
-                    <p class="text-xs text-slate-500">בחרו את פקודת התרגום הנכונה מכתובת פנימית <code class="code-font">192.168.30.100</code> לציבורית <code class="code-font">212.143.1.50</code>:</p>
-                    <select id="nat-cmd" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold code-font">
-                        <option value="none">-- בחר פקודת NAT --</option>
-                        <option value="correct">ip nat inside source static 192.168.30.100 212.143.1.50</option>
-                        <option value="wrong">ip nat inside source static 212.143.1.50 192.168.30.100</option>
-                    </select>
-                </div>
-
-                <!-- ACL Config -->
-                <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 space-y-3">
-                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
-                        <i data-lucide="lock" class="w-4 h-4 text-red-500"></i> הגדרת Access Control List (ACL)
-                    </h4>
-                    <p class="text-xs text-slate-500">נדרש לחסום את מחלקת מכירות (VLAN 10) מלהגיע לשרת ה-DMZ, אך לאפשר למחלקת פיתוח (VLAN 20):</p>
                     
-                    <div class="space-y-2 text-xs">
-                        <div class="flex items-center gap-2">
-                            <span class="w-24 font-bold text-slate-700">כלל 1 (VLAN 10):</span>
-                            <select id="acl-vlan10" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
-                                <option value="none">-- בחר פעולה --</option>
-                                <option value="correct">access-list 100 deny ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
-                                <option value="wrong">access-list 100 permit ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
-                            </select>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-24 font-bold text-slate-700">כלל 2 (כל שאר התנועה):</span>
-                            <select id="acl-default" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
-                                <option value="none">-- בחר פעולה --</option>
-                                <option value="correct">access-list 100 permit ip any any</option>
-                                <option value="wrong">access-list 100 deny ip any any</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CHECK BUTTON -->
-                <div class="pt-2">
-                    <button onclick="applyNatAclConfig()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
-                        <i data-lucide="check-circle" class="w-4 h-4"></i>
-                        <span>בדוק והחל פקודות במסוף</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 5: PING SIMULATOR & VALIDATION -->
-        <div id="sec-ping" class="tab-content hidden space-y-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <i data-lucide="activity" class="w-5 h-5 text-amber-600"></i>
-                    משימה 4: סימולטור אימות ובדיקת פינג (Ping Test)
-                </h3>
-                <p class="text-xs text-slate-500 mb-6">לחצו על כפתורי הסימולציה ובדקו אם הגדרתם נכון את הניתובים וה-ACLs:</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <!-- Ping Test 1 -->
-                    <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between">
-                        <div>
-                            <span class="font-bold text-xs text-slate-800">פינג: PC-Dev (VLAN 20) ➔ DMZ Web Server</span>
-                            <p class="text-[11px] font-semibold text-emerald-600">תוצאה מצופה: SUCCESS (200 OK)</p>
-                        </div>
-                        <button onclick="runPingTest('dev-to-dmz')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm">
-                            <i data-lucide="play" class="w-3.5 h-3.5"></i> הפעל Ping
-                        </button>
-                    </div>
-
-                    <!-- Ping Test 2 -->
-                    <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between">
-                        <div>
-                            <span class="font-bold text-xs text-slate-800">פינג: PC-Sales (VLAN 10) ➔ DMZ Web Server</span>
-                            <p class="text-[11px] font-semibold text-red-600">תוצאה מצופה: BLOCKED BY ACL (Destination Unreachable)</p>
-                        </div>
-                        <button onclick="runPingTest('sales-to-dmz')" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm">
-                            <i data-lucide="play" class="w-3.5 h-3.5"></i> הפעל Ping
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Simulation Terminal Console -->
-                <div class="bg-slate-950 rounded-xl p-4 text-xs code-font text-emerald-400 space-y-2 border border-slate-800 min-h-[160px]" id="terminal-console">
-                    <p class="text-slate-500">// CYBER_ENTERPRISE ROUTER CONSOLE V10.4</p>
-                    <p class="text-slate-400">מוכן להרצת בדיקות תקשורת. לחצו על כפתורי ה-Ping למעלה להרצה...</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 6: REFLECTION QUESTIONS -->
-        <div id="sec-reflection" class="tab-content hidden space-y-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
-                <div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                        <i data-lucide="message-square" class="w-5 h-5 text-cyan-600"></i>
-                        10 שאלות רפלקציה והבנה מעמיקה
-                    </h3>
-                    <p class="text-xs text-slate-500">ענו על השאלות הבאות כדי לסכם את הידע שלכם בארכיטקטורת רשתות:</p>
-                </div>
-
-                <!-- 10 QUESTIONS GRID -->
-                <div class="space-y-4">
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">1. מהו התפקיד המרכזי של תתי-הממשקים (Subinterfaces) בארכיטקטורת Router-on-a-Stick?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">2. מדוע חובה להגדיר Switchport Mode Trunk בפורט המחובר מהמתג לראוטר?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">3. מה יקרה אם נשכח לרשום את הפקודה encapsulation dot1Q 10 בתת-הממשק של VLAN 10?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">4. מה ההבדל בין Static NAT ל-PAT (Port Address Translation) ומתי נשתמש בכל אחד?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">5. כיצד רשימת אקסס-ליסט (ACL) מגנה על שרת ה-DMZ מפני פגיעות ברשתות הפנימיות?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">6. מהי חשיבות הכלל Implicit Deny בסוף כל רשימת ACL?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">7. הסבירו מה קורה לחבילת מידע (Packet) משלב יציאתה מ-PC-Dev עד הגעתה לשרת ה-Web ב-DMZ.</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">8. מהו תפקידו של ה-Default Gateway בהעברת מידע בין רשתות שונות?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">9. מה היתרון בחלוקת ארגון ל-VLANs נפרדים מבחינת אבטחה ועומסי שידור (Broadcast Domains)?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                        <label class="block font-bold text-xs text-slate-800 mb-2">10. רפלקציה אישית: מה היה האתגר הגדול ביותר עבורכם בבניית המעבדה המסכמת וכיצד פתרתם אותו?</label>
-                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
-                    </div>
-                </div>
-
-                <!-- PADLET INTEGRATION AREA -->
-                <div class="border-2 border-dashed border-cyan-300 bg-cyan-50/50 rounded-2xl p-6 text-center space-y-3">
-                    <div class="w-12 h-12 bg-cyan-500 text-white rounded-full flex items-center justify-center mx-auto shadow-md">
-                        <i data-lucide="layout" class="w-6 h-6"></i>
-                    </div>
-                    <h4 class="font-black text-slate-900 text-base">לוח שיתוף ורפלקציה כיתתי (Padlet)</h4>
-                    <p class="text-xs text-slate-600 max-w-lg mx-auto">
-                        [אזור ייעודי למורה להטמעת לוח Padlet כיתתי. ניתן להדביק כאן את קוד ה-Iframe או הקישור ללוח הפאדלט של הכיתה].
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        תשתית תקשורת CyberEnterprise: הקמת שני סגמנטים פנימיים, DMZ, ניתוב ROAS, תרגום NAT, ו-ACL לאבטחה.
                     </p>
-                    <div class="bg-white border border-slate-200 rounded-xl p-8 min-h-[180px] flex items-center justify-center text-slate-400 text-xs italic">
-                        -- כאן יופיע לוח ה-Padlet של המורה --
+
+                    <!-- TOPOLOGY CARDS IN SIDEBAR -->
+                    <div class="space-y-3">
+                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
+                            <div class="flex items-center gap-2 text-slate-800 font-bold text-xs mb-1">
+                                <i data-lucide="users" class="w-3.5 h-3.5 text-blue-500"></i>
+                                VLAN 10: Sales (מכירות)
+                            </div>
+                            <ul class="text-[11px] text-slate-500 space-y-0.5">
+                                <li>• רשת: <code class="code-font text-blue-600 font-bold">192.168.10.0/24</code></li>
+                                <li>• IP לתחנה: <code class="code-font font-bold">192.168.10.10</code></li>
+                                <li>• Gateway: <code class="code-font font-bold">192.168.10.1</code></li>
+                                <li>• <strong class="text-red-600">חסום ב-ACL</strong> ל-DMZ!</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
+                            <div class="flex items-center gap-2 text-slate-800 font-bold text-xs mb-1">
+                                <i data-lucide="code" class="w-3.5 h-3.5 text-emerald-500"></i>
+                                VLAN 20: R&D (פיתוח)
+                            </div>
+                            <ul class="text-[11px] text-slate-500 space-y-0.5">
+                                <li>• רשת: <code class="code-font text-emerald-600 font-bold">192.168.20.0/24</code></li>
+                                <li>• IP לתחנה: <code class="code-font font-bold">192.168.20.20</code></li>
+                                <li>• Gateway: <code class="code-font font-bold">192.168.20.1</code></li>
+                                <li>• גישה מלאה ל-Web ב-DMZ ולציבורי.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
+                            <div class="flex items-center gap-2 text-slate-800 font-bold text-xs mb-1">
+                                <i data-lucide="server" class="w-3.5 h-3.5 text-purple-500"></i>
+                                VLAN 30: DMZ (שרתים)
+                            </div>
+                            <ul class="text-[11px] text-slate-500 space-y-0.5">
+                                <li>• רשת: <code class="code-font text-purple-600 font-bold">192.168.30.0/24</code></li>
+                                <li>• שרת Web: <code class="code-font font-bold">192.168.30.100</code></li>
+                                <li>• Static NAT: <code class="code-font font-bold">212.143.1.50</code></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- AHOOAN TIP BOX -->
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[11px] text-amber-900 flex items-start gap-2">
+                        <span class="text-xl flex-shrink-0">🔥</span>
+                        <div>
+                            <h4 class="font-bold text-amber-950 mb-0.5">טיפ מאחו!</h4>
+                            <p class="leading-normal">
+                                ב-ROAS הממשק הפיזי של הראוטר ללא IP, ורק ה-Subinterfaces מקבלים IP ותיוג <code class="code-font font-bold">encapsulation dot1Q</code>!
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- SMART PACKET TRACER TERMINAL -->
-        <div class="mt-8 bg-slate-900 border-2 border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col font-sans">
-            <!-- TERMINAL HEADER -->
-            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                    <div class="flex gap-1.5">
-                        <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            <!-- DYNAMIC CONTENT AREA -->
+            <div id="main-content-area" class="lg:col-span-2 space-y-6">
+
+                <!-- SECTION 1: SPECIFICATION OVERVIEW DETAIL -->
+                <div id="sec-spec" class="tab-content space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">
+                            <i data-lucide="compass" class="w-4 h-4"></i>
+                            תרחיש הארכיטקטורה המרכזי
+                        </div>
+                        <h2 class="text-2xl font-black text-slate-900 mb-4">הקמת תשתית תקשורת מאובטחת לחברת CyberEnterprise</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            אתם משמשים כארכיטקטי הרשת הראשיים. משימתכם היא לתכנן ולהגדיר מאפס את רשת התקשורת הארגונית הכוללת שני סגמנטים פנימיים (מכירות ופיתוח), רשת שרתים (DMZ), ניתוב Inter-VLAN באמצעות מתודולוגיית Router-on-a-Stick, תרגום כתובות NAT לאינטרנט, והגדרת ACL לאבטחת הגישה לשרתים.
+                        </p>
+                        <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 text-xs font-semibold">
+                            💡 **שימו לב:** מפרט הנתונים, הכתובות והחוקים מופיע כעת לצד המסך וילווה אתכם לכל אורך תהליך ההגדרה והבדיקות!
+                        </div>
                     </div>
-                    <span class="text-xs font-bold text-slate-300 mr-2 flex items-center gap-1.5 code-font">
-                        <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i> CISCO_CLI_TERMINAL // PACKET_TRACER_SIM
-                    </span>
                 </div>
-                <div class="flex items-center gap-2 text-[11px] font-bold text-slate-400">
-                    <span class="bg-slate-800 text-cyan-400 px-2 py-0.5 rounded border border-slate-700">עברית מימין | פקודות משמאל ⚡</span>
-                    <button onclick="clearTerminal()" class="hover:text-white transition-colors flex items-center gap-1 bg-slate-800 px-2 py-0.5 rounded">
-                        <i data-lucide="trash-2" class="w-3 h-3"></i> ניקוי
-                    </button>
-                </div>
-            </div>
 
-            <!-- TERMINAL LOG BODY -->
-            <div id="cli-log" class="p-4 bg-slate-950/90 h-64 overflow-y-auto space-y-2 text-xs border-b border-slate-800">
-                <div class="text-slate-500 border-b border-slate-800/80 pb-2 flex justify-between items-center text-right">
-                    <span class="text-emerald-400 font-sans font-bold">💻 חלונית המסוף פעילה! לחץ על כפתורי ה-"בדוק" כדי להריץ את הבחירות ב-CLI:</span>
-                    <span class="font-mono text-[10px] text-slate-500">SYSTEM_READY</span>
-                </div>
-                <div id="cli-output" class="space-y-1.5"></div>
-            </div>
+                <!-- SECTION 2: VLAN & IP CONFIGURATION -->
+                <div id="sec-vlan-ip" class="tab-content hidden space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="network" class="w-5 h-5 text-blue-600"></i>
+                                משימה 1: הגדרת כתובות IP וחלוקת VLANs ברכיבי הקצה
+                            </h3>
+                            <p class="text-xs text-slate-500">הגדירו את הכתובות ושערי ברירת המחדל (Default Gateway) המתאימים לכל תחנה בהתאם למפרט:</p>
+                        </div>
 
-            <!-- MANUAL COMMAND INPUT FORM -->
-            <form onsubmit="handleManualCommand(event)" class="bg-slate-900 p-2.5 flex items-center gap-2" dir="ltr">
-                <span class="text-cyan-400 code-font font-bold text-xs pl-2 whitespace-nowrap">Router(config)#</span>
-                <input type="text" id="manual-cli-input" placeholder="Enter command manually (e.g., ip route 0.0.0.0 0.0.0.0 212.143.1.1)..." class="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-emerald-400 code-font focus:outline-none focus:border-cyan-500 transition-all">
-                <button type="submit" class="bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs px-4 py-1.5 rounded-lg transition-all flex items-center gap-1 font-sans">
-                    <span>הרץ</span>
-                    <i data-lucide="send" class="w-3 h-3"></i>
-                </button>
-            </form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- PC-Sales Config -->
+                            <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
+                                <div class="flex items-center justify-between border-b pb-2 border-slate-200">
+                                    <span class="font-bold text-xs text-blue-700 flex items-center gap-1.5">
+                                        <i data-lucide="laptop" class="w-4 h-4"></i> PC-Sales (VLAN 10)
+                                    </span>
+                                    <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full">מכירות</span>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
+                                    <input type="text" id="ip-pc-sales" value="192.168.10.10" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
+                                    <select id="gw-pc-sales" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
+                                        <option value="wrong">192.168.20.1</option>
+                                        <option value="correct" selected>192.168.10.1</option>
+                                        <option value="wrong2">192.168.30.1</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- PC-Dev Config -->
+                            <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
+                                <div class="flex items-center justify-between border-b pb-2 border-slate-200">
+                                    <span class="font-bold text-xs text-emerald-700 flex items-center gap-1.5">
+                                        <i data-lucide="laptop" class="w-4 h-4"></i> PC-Dev (VLAN 20)
+                                    </span>
+                                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">פיתוח</span>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
+                                    <input type="text" id="ip-pc-dev" value="192.168.20.20" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
+                                    <select id="gw-pc-dev" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
+                                        <option value="correct" selected>192.168.20.1</option>
+                                        <option value="wrong">192.168.10.1</option>
+                                        <option value="wrong2">192.168.30.1</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="applyIpConfig()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                <span>בדוק והחל פקודות במסוף</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: ROUTER-ON-A-STICK CONFIG -->
+                <div id="sec-roas" class="tab-content hidden space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="router" class="w-5 h-5 text-emerald-600"></i>
+                                משימה 2: הגדרת Router-on-a-Stick בראוטר המרכזי
+                            </h3>
+                            <p class="text-xs text-slate-500">ביחרו את הפקודות והתיוגים הנכונים עבור תתי-הממשקים (Subinterfaces) בראוטר:</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Subinterface g0/0.10 -->
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col md:flex-row items-md-center justify-between gap-4">
+                                <div>
+                                    <span class="code-font font-bold text-xs text-blue-600">Subinterface GigabitEthernet 0/0.10 (VLAN 10)</span>
+                                    <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער למכירות</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <select id="roas-vlan10-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                                        <option value="none">-- בחר תיוג Encap --</option>
+                                        <option value="correct">encapsulation dot1Q 10</option>
+                                        <option value="wrong">encapsulation dot1Q 20</option>
+                                    </select>
+                                    <input type="text" id="roas-vlan10-ip" value="192.168.10.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
+                                </div>
+                            </div>
+
+                            <!-- Subinterface g0/0.20 -->
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col md:flex-row items-md-center justify-between gap-4">
+                                <div>
+                                    <span class="code-font font-bold text-xs text-emerald-600">Subinterface GigabitEthernet 0/0.20 (VLAN 20)</span>
+                                    <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער לפיתוח</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <select id="roas-vlan20-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                                        <option value="none">-- בחר תיוג Encap --</option>
+                                        <option value="correct">encapsulation dot1Q 20</option>
+                                        <option value="wrong">encapsulation dot1Q 10</option>
+                                    </select>
+                                    <input type="text" id="roas-vlan20-ip" value="192.168.20.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
+                                </div>
+                            </div>
+
+                            <!-- Trunk port check -->
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-center justify-between">
+                                <div>
+                                    <span class="font-bold text-xs text-slate-800">מצב הפורט במתג המחובר לראוטר:</span>
+                                    <p class="text-[11px] text-slate-500">מה הגדרת ה-Switchport הנדרשת במתג בפורט המחובר לראוטר?</p>
+                                </div>
+                                <select id="sw-trunk-mode" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                                    <option value="none">-- בחר מצב פורט --</option>
+                                    <option value="access">switchport mode access</option>
+                                    <option value="correct">switchport mode trunk</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="applyRoasConfig()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                <span>בדוק והחל פקודות במסוף</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: NAT & ACL CONFIGURATION -->
+                <div id="sec-nat-acl" class="tab-content hidden space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-purple-600"></i>
+                                משימה 3: הגדרות NAT ורשימות אבטחה (ACL)
+                            </h3>
+                            <p class="text-xs text-slate-500">הגדירו את חוק ה-Static NAT לשרתי ה-DMZ ואת כללי ה-ACL הנדרשים:</p>
+                        </div>
+
+                        <!-- NAT Config -->
+                        <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 space-y-3">
+                            <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
+                                <i data-lucide="shuffle" class="w-4 h-4 text-purple-500"></i> חוק Static NAT לשרת ה-Web
+                            </h4>
+                            <p class="text-xs text-slate-500">בחרו את פקודת התרגום הנכונה מכתובת פנימית <code class="code-font">192.168.30.100</code> לציבורית <code class="code-font">212.143.1.50</code>:</p>
+                            <select id="nat-cmd" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold code-font">
+                                <option value="none">-- בחר פקודת NAT --</option>
+                                <option value="correct">ip nat inside source static 192.168.30.100 212.143.1.50</option>
+                                <option value="wrong">ip nat inside source static 212.143.1.50 192.168.30.100</option>
+                            </select>
+                        </div>
+
+                        <!-- ACL Config -->
+                        <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 space-y-3">
+                            <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
+                                <i data-lucide="lock" class="w-4 h-4 text-red-500"></i> הגדרת Access Control List (ACL)
+                            </h4>
+                            <p class="text-xs text-slate-500">נדרש לחסום את מחלקת מכירות (VLAN 10) מלהגיע לשרת ה-DMZ, אך לאפשר למחלקת פיתוח (VLAN 20):</p>
+                            
+                            <div class="space-y-2 text-xs">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-24 font-bold text-slate-700">כלל 1 (VLAN 10):</span>
+                                    <select id="acl-vlan10" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
+                                        <option value="none">-- בחר פעולה --</option>
+                                        <option value="correct">access-list 100 deny ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
+                                        <option value="wrong">access-list 100 permit ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-24 font-bold text-slate-700">כלל 2 (כל שאר התנועה):</span>
+                                    <select id="acl-default" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
+                                        <option value="none">-- בחר פעולה --</option>
+                                        <option value="correct">access-list 100 permit ip any any</option>
+                                        <option value="wrong">access-list 100 deny ip any any</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="applyNatAclConfig()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                <span>בדוק והחל פקודות במסוף</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 5: PING SIMULATOR & VALIDATION -->
+                <div id="sec-ping" class="tab-content hidden space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i data-lucide="activity" class="w-5 h-5 text-amber-600"></i>
+                            משימה 4: סימולטור אימות ובדיקת פינג (Ping Test)
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-6">לחצו על כפתורי הסימולציה ובדקו אם הגדרתם נכון את הניתובים וה-ACLs:</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <!-- Ping Test 1 -->
+                            <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between">
+                                <div>
+                                    <span class="font-bold text-xs text-slate-800">פינג: PC-Dev ➔ DMZ Web Server</span>
+                                    <p class="text-[11px] font-semibold text-emerald-600">תוצאה מצופה: SUCCESS (200 OK)</p>
+                                </div>
+                                <button onclick="runPingTest('dev-to-dmz')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm">
+                                    <i data-lucide="play" class="w-3.5 h-3.5"></i> הפעל Ping
+                                </button>
+                            </div>
+
+                            <!-- Ping Test 2 -->
+                            <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between">
+                                <div>
+                                    <span class="font-bold text-xs text-slate-800">פינג: PC-Sales ➔ DMZ Web Server</span>
+                                    <p class="text-[11px] font-semibold text-red-600">תוצאה מצופה: BLOCKED BY ACL</p>
+                                </div>
+                                <button onclick="runPingTest('sales-to-dmz')" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm">
+                                    <i data-lucide="play" class="w-3.5 h-3.5"></i> הפעל Ping
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Terminal Console -->
+                        <div class="bg-slate-950 rounded-xl p-4 text-xs code-font text-emerald-400 space-y-2 border border-slate-800 min-h-[160px]" id="terminal-console">
+                            <p class="text-slate-500">// CYBER_ENTERPRISE ROUTER CONSOLE V10.4</p>
+                            <p class="text-slate-400">מוכן להרצת בדיקות תקשורת. לחצו על כפתורי ה-Ping למעלה להרצה...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 6: REFLECTION QUESTIONS -->
+                <div id="sec-reflection" class="tab-content hidden space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="message-square" class="w-5 h-5 text-cyan-600"></i>
+                                10 שאלות רפלקציה והבנה מעמיקה
+                            </h3>
+                            <p class="text-xs text-slate-500">ענו על השאלות הבאות כדי לסכם את הידע שלכם בארכיטקטורת רשתות:</p>
+                        </div>
+
+                        <!-- 10 QUESTIONS GRID -->
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">1. מהו התפקיד המרכזי של תתי-הממשקים (Subinterfaces) בארכיטקטורת Router-on-a-Stick?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">2. מדוע חובה להגדיר Switchport Mode Trunk בפורט המחובר מהמתג לראוטר?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">3. מה יקרה אם נשכח לרשום את הפקודה encapsulation dot1Q 10 בתת-הממשק של VLAN 10?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">4. מה ההבדל בין Static NAT ל-PAT (Port Address Translation) ומתי נשתמש בכל אחד?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">5. כיצד רשימת אקסס-ליסט (ACL) מגנה על שרת ה-DMZ מפני פגיעות ברשתות הפנימיות?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">6. מהי חשיבות הכלל Implicit Deny בסוף כל רשימת ACL?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">7. הסבירו מה קורה לחבילת מידע (Packet) משלב יציאתה מ-PC-Dev עד הגעתה לשרת ה-Web ב-DMZ.</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">8. מהו תפקידו של ה-Default Gateway בהעברת מידע בין רשתות שונות?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">9. מה היתרון בחלוקת ארגון ל-VLANs נפרדים מבחינת אבטחה ועומסי שידור (Broadcast Domains)?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                <label class="block font-bold text-xs text-slate-800 mb-2">10. רפלקציה אישית: מה היה האתגר הגדול ביותר עבורכם בבניית המעבדה המסכמת וכיצד פתרתם אותו?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- PADLET INTEGRATION AREA -->
+                        <div class="border-2 border-dashed border-cyan-300 bg-cyan-50/50 rounded-2xl p-6 text-center space-y-3">
+                            <div class="w-12 h-12 bg-cyan-500 text-white rounded-full flex items-center justify-center mx-auto shadow-md">
+                                <i data-lucide="layout" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-base">לוח שיתוף ורפלקציה כיתתי (Padlet)</h4>
+                            <p class="text-xs text-slate-600 max-w-lg mx-auto">
+                                [אזור ייעודי למורה להטמעת לוח Padlet כיתתי. ניתן להדביק כאן את קוד ה-Iframe או הקישור ללוח הפאדלט של הכיתה].
+                            </p>
+                            <div class="bg-white border border-slate-200 rounded-xl p-8 min-h-[180px] flex items-center justify-center text-slate-400 text-xs italic">
+                                -- כאן יופיע לוח ה-Padlet של המורה --
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SMART PACKET TRACER TERMINAL -->
+                <div class="bg-slate-900 border-2 border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col font-sans">
+                    <!-- TERMINAL HEADER -->
+                    <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="flex gap-1.5">
+                                <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                            </div>
+                            <span class="text-xs font-bold text-slate-300 mr-2 flex items-center gap-1.5 code-font">
+                                <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i> CISCO_CLI_TERMINAL // PACKET_TRACER_SIM
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2 text-[11px] font-bold text-slate-400">
+                            <span class="bg-slate-800 text-cyan-400 px-2 py-0.5 rounded border border-slate-700">עברית מימין | פקודות משמאל ⚡</span>
+                            <button onclick="clearTerminal()" class="hover:text-white transition-colors flex items-center gap-1 bg-slate-800 px-2 py-0.5 rounded">
+                                <i data-lucide="trash-2" class="w-3 h-3"></i> ניקוי
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TERMINAL LOG BODY -->
+                    <div id="cli-log" class="p-4 bg-slate-950/90 h-64 overflow-y-auto space-y-2 text-xs border-b border-slate-800">
+                        <div class="text-slate-500 border-b border-slate-800/80 pb-2 flex justify-between items-center text-right">
+                            <span class="text-emerald-400 font-sans font-bold">💻 חלונית המסוף פעילה! לחץ על כפתורי ה-"בדוק" כדי להריץ את הבחירות ב-CLI:</span>
+                            <span class="font-mono text-[10px] text-slate-500">SYSTEM_READY</span>
+                        </div>
+                        <div id="cli-output" class="space-y-1.5"></div>
+                    </div>
+
+                    <!-- MANUAL COMMAND INPUT FORM -->
+                    <form onsubmit="handleManualCommand(event)" class="bg-slate-900 p-2.5 flex items-center gap-2" dir="ltr">
+                        <span class="text-cyan-400 code-font font-bold text-xs pl-2 whitespace-nowrap">Router(config)#</span>
+                        <input type="text" id="manual-cli-input" placeholder="Enter command manually (e.g., ip route 0.0.0.0 0.0.0.0 212.143.1.1)..." class="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-emerald-400 code-font focus:outline-none focus:border-cyan-500 transition-all">
+                        <button type="submit" class="bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs px-4 py-1.5 rounded-lg transition-all flex items-center gap-1 font-sans">
+                            <span>הרץ</span>
+                            <i data-lucide="send" class="w-3 h-3"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
         </div>
 
     </main>
@@ -617,6 +641,20 @@
             const activeBtn = document.getElementById(`tab-${tabId}`);
             if (activeBtn) {
                 activeBtn.className = "tab-btn bg-red-600 text-white px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm transition-all";
+            }
+
+            // DYNAMIC SIDEBAR VISIBILITY: Hide in Reflection (tab 6), show in all other tabs
+            const sidebar = document.getElementById('persistent-spec-sidebar');
+            const mainContentArea = document.getElementById('main-content-area');
+
+            if (tabId === 'reflection') {
+                sidebar.classList.add('hidden');
+                mainContentArea.classList.remove('lg:col-span-2');
+                mainContentArea.classList.add('lg:col-span-3');
+            } else {
+                sidebar.classList.remove('hidden');
+                mainContentArea.classList.remove('lg:col-span-3');
+                mainContentArea.classList.add('lg:col-span-2');
             }
         }
 
