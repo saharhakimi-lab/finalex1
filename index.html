@@ -37,6 +37,54 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #64748b;
         }
+    
+        /* Styled English terms tag */
+        .en-badge {
+            font-family: 'JetBrains Mono', monospace;
+            direction: ltr !important;
+            display: inline-block;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #38bdf8;
+            border: 1px solid #38bdf840;
+            padding: 1px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+            margin: 0 2px;
+            vertical-align: middle;
+        }
+        .en-badge-light {
+            font-family: 'JetBrains Mono', monospace;
+            direction: ltr !important;
+            display: inline-block;
+            background-color: #f1f5f9;
+            color: #2563eb;
+            border: 1px solid #cbd5e1;
+            padding: 1px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85em;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            margin: 0 2px;
+            vertical-align: middle;
+        }
+        .en-badge-purple {
+            font-family: 'JetBrains Mono', monospace;
+            direction: ltr !important;
+            display: inline-block;
+            background-color: #faf5ff;
+            color: #9333ea;
+            border: 1px solid #e9d5ff;
+            padding: 1px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85em;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            margin: 0 2px;
+            vertical-align: middle;
+        }
+
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between bg-slate-100">
@@ -60,7 +108,7 @@
                         חוגגים הצלחה בתקשוב עם סהר! 🎉
                     </h1>
                     <!-- תוקן מ"משימת סיכום" ל"חוויות סיכום" -->
-                    <p class="text-xs font-semibold text-slate-500">חוויות סיכום ארכיטקטורה: VLANs, Router-on-a-Stick, NAT, ACL & Ping Test</p>
+                    <p class="text-xs font-semibold text-slate-500">חוויות סיכום ארכיטקטורה: <span class="en-badge-light">VLANs</span>, <span class="en-badge-light">Router-on-a-Stick</span>, <span class="en-badge-light">NAT</span>, <span class="en-badge-light">ACL</span> & <span class="en-badge-light">Ping Test</span></p>
                 </div>
             </div>
 
@@ -216,7 +264,7 @@
                     </div>
                     
                     <p class="text-slate-600 text-xs leading-relaxed">
-                        תשתית תקשורת CyberEnterprise: הקמת שני סגמנטים פנימיים, DMZ, ניתוב ROAS, תרגום NAT, ו-ACL לאבטחה.
+                        תשתית תקשורת <span class="en-badge">CyberEnterprise</span>: הקמת שני סגמנטים פנימיים, <span class="en-badge-purple">DMZ</span>, ניתוב <span class="en-badge-light">ROAS</span>, תרגום <span class="en-badge-light">NAT</span>, ו-<span class="en-badge-light">ACL</span> לאבטחה.
                     </p>
 
                     <!-- TOPOLOGY CARDS IN SIDEBAR -->
@@ -230,7 +278,7 @@
                                 <li>• רשת: <code class="code-font text-blue-600 font-bold">192.168.10.0/24</code></li>
                                 <li>• IP לתחנה: <code class="code-font font-bold">192.168.10.10</code></li>
                                 <li>• Gateway: <code class="code-font font-bold">192.168.10.1</code></li>
-                                <li>• <strong class="text-red-600">חסום ב-ACL</strong> ל-DMZ!</li>
+                                <li>• <strong class="text-red-600">חסום ב-<span class="en-badge-light">ACL</span></strong> ל-<span class="en-badge-purple">DMZ</span>!</li>
                             </ul>
                         </div>
 
@@ -243,7 +291,7 @@
                                 <li>• רשת: <code class="code-font text-emerald-600 font-bold">192.168.20.0/24</code></li>
                                 <li>• IP לתחנה: <code class="code-font font-bold">192.168.20.20</code></li>
                                 <li>• Gateway: <code class="code-font font-bold">192.168.20.1</code></li>
-                                <li>• גישה מלאה ל-Web ב-DMZ ולציבורי.</li>
+                                <li>• גישה מלאה ל-Web ב-<span class="en-badge-purple">DMZ</span> ולציבורי.</li>
                             </ul>
                         </div>
 
@@ -266,7 +314,7 @@
                         <div>
                             <h4 class="font-bold text-amber-950 mb-0.5">טיפ מאחו!</h4>
                             <p class="leading-normal">
-                                ב-ROAS הממשק הפיזי של הראוטר ללא IP, ורק ה-Subinterfaces מקבלים IP ותיוג <code class="code-font font-bold">encapsulation dot1Q</code>!
+                                ב-<span class="en-badge-light">ROAS</span> הממשק הפיזי של הראוטר ללא IP, ורק ה-<span class="en-badge-light">Subinterfaces</span> מקבלים IP ותיוג <code class="code-font font-bold">encapsulation dot1Q</code>!
                             </p>
                         </div>
                     </div>
@@ -286,7 +334,7 @@
                             </div>
                             <h2 class="text-2xl font-black text-slate-900 mb-3">הקמת תשתית תקשורת מאובטחת לחברת CyberEnterprise</h2>
                             <p class="text-slate-600 text-sm leading-relaxed">
-                                אתם משמשים כארכיטקטי הרשת הראשיים. משימתכם היא לתכנן ולהגדיר מאפס את רשת התקשורת הארגונית הכוללת שני סגמנטים פנימיים (מכירות ופיתוח), רשת שרתים (DMZ), ניתוב Inter-VLAN באמצעות מתודולוגיית Router-on-a-Stick, תרגום כתובות NAT לאינטרנט, והגדרת ACL לאבטחת הגישה לשרתים.
+                                אתם משמשים כארכיטקטי הרשת הראשיים. משימתכם היא לתכנן ולהגדיר מאפס את רשת התקשורת הארגונית הכוללת שני סגמנטים פנימיים (מכירות ופיתוח), רשת שרתים (<span class="en-badge-purple">DMZ</span>), ניתוב <span class="en-badge-light">Inter-VLAN</span> באמצעות מתודולוגיית <span class="en-badge-light">Router-on-a-Stick</span>, תרגום כתובות <span class="en-badge-light">NAT</span> לאינטרנט, והגדרת <span class="en-badge-light">ACL</span> לאבטחת הגישה לשרתים.
                             </p>
                         </div>
 
@@ -319,7 +367,7 @@
                                     <ul class="text-xs md:text-sm space-y-2 text-slate-200">
                                         <li class="flex items-start gap-2">
                                             <span class="text-emerald-400 font-bold">✓</span>
-                                            <span><b>מתג מרכזי (Core Switch):</b> הוילאנים (VLAN 10, 20, 30) והפורטים (Access Ports) כבר מוגדרים ומשויכים לתחנות!</span>
+                                            <span><b>מתג מרכזי (<span class="en-badge">Core Switch</span>):</b> הוילאנים (<span class="en-badge-light">VLAN 10, 20, 30</span>) והפורטים (<span class="en-badge-light">Access Ports</span>) כבר מוגדרים ומשויכים לתחנות!</span>
                                         </li>
                                         <li class="flex items-start gap-2">
                                             <span class="text-emerald-400 font-bold">✓</span>
@@ -327,7 +375,7 @@
                                         </li>
                                         <li class="flex items-start gap-2">
                                             <span class="text-emerald-400 font-bold">✓</span>
-                                            <span><b>שרת Web ב-DMZ:</b> השרת עובד וממתין לקבלת פניות בכתובת <code class="code-font text-purple-300 font-bold">192.168.30.100</code>.</span>
+                                            <span><b>שרת Web ב-<span class="en-badge-purple">DMZ</span>:</b> השרת עובד וממתין לקבלת פניות בכתובת <code class="code-font text-purple-300 font-bold">192.168.30.100</code>.</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -341,19 +389,19 @@
                                     <ul class="text-xs md:text-sm space-y-2 text-slate-200">
                                         <li class="flex items-start gap-2">
                                             <span class="text-amber-400 font-bold">⚙️</span>
-                                            <span><b>בלשונית 2:</b> הגדרת כתובות IP ו-Default Gateway נכונים למחשבי ה-Sales וה-Dev.</span>
+                                            <span><b>בלשונית 2:</b> הגדרת כתובות IP ו-<span class="en-badge-light">Default Gateway</span> נכונים למחשבי ה-Sales וה-Dev.</span>
                                         </li>
                                         <li class="flex items-start gap-2">
                                             <span class="text-amber-400 font-bold">⚙️</span>
-                                            <span><b>בלשונית 3:</b> הגדרת Router-on-a-Stick (תת-ממשקים, תיוג <code class="code-font font-bold text-amber-300">dot1Q</code> ופורט Trunk במתג).</span>
+                                            <span><b>בלשונית 3:</b> הגדרת <span class="en-badge-light">Router-on-a-Stick</span> (תת-ממשקים, תיוג <code class="code-font font-bold text-amber-300">dot1Q</code> ופורט <span class="en-badge-light">Trunk</span> במתג).</span>
                                         </li>
                                         <li class="flex items-start gap-2">
                                             <span class="text-amber-400 font-bold">⚙️</span>
-                                            <span><b>בלשונית 4:</b> הגדרת חוק Static NAT ל-DMZ והגדרת כללי אקסס-ליסט (ACL) לחסימת Sales.</span>
+                                            <span><b>בלשונית 4:</b> הגדרת חוק <span class="en-badge-purple">Static NAT</span> ל-<span class="en-badge-purple">DMZ</span> והגדרת כללי אקסס-ליסט (<span class="en-badge-light">ACL</span>) לחסימת Sales.</span>
                                         </li>
                                         <li class="flex items-start gap-2">
                                             <span class="text-amber-400 font-bold">⚙️</span>
-                                            <span><b>בלשוניות 5 ו-6:</b> ביצוע בדיקות Ping אימות ומילוי שאלות הרפלקציה.</span>
+                                            <span><b>בלשוניות 5 ו-6:</b> ביצוע בדיקות <span class="en-badge-light">Ping</span> אימות ומילוי שאלות הרפלקציה.</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -372,7 +420,7 @@
                         <div>
                             <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
                                 <i data-lucide="network" class="w-5 h-5 text-blue-600"></i>
-                                משימה 1: הגדרת כתובות IP וחלוקת VLANs ברכיבי הקצה
+                                משימה 1: הגדרת כתובות IP וחלוקת <span class="en-badge-light">VLANs</span> ברכיבי הקצה
                             </h3>
                             <p class="text-xs text-slate-500">הגדירו את הכתובות ושערי ברירת המחדל (Default Gateway) המתאימים לכל תחנה בהתאם למפרט:</p>
                         </div>
@@ -438,9 +486,9 @@
                         <div>
                             <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
                                 <i data-lucide="router" class="w-5 h-5 text-emerald-600"></i>
-                                משימה 2: הגדרת Router-on-a-Stick בראוטר המרכזי
+                                משימה 2: הגדרת <span class="en-badge-light">Router-on-a-Stick</span> בראוטר המרכזי
                             </h3>
-                            <p class="text-xs text-slate-500">ביחרו את הפקודות והתיוגים הנכונים עבור תתי-הממשקים (Subinterfaces) בראוטר:</p>
+                            <p class="text-xs text-slate-500">ביחרו את הפקודות והתיוגים הנכונים עבור תתי-הממשקים (<span class="en-badge-light">Subinterfaces</span>) בראוטר:</p>
                         </div>
 
                         <div class="space-y-4">
@@ -505,7 +553,7 @@
                         <div>
                             <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
                                 <i data-lucide="shield-check" class="w-5 h-5 text-purple-600"></i>
-                                משימה 3: הגדרות NAT ורשימות אבטחה (ACL)
+                                משימה 3: הגדרות <span class="en-badge-light">NAT</span> ורשימות אבטחה (<span class="en-badge-light">ACL</span>)
                             </h3>
                             <p class="text-xs text-slate-500">הגדירו את חוק ה-Static NAT לשרתי ה-DMZ ואת כללי ה-ACL הנדרשים:</p>
                         </div>
@@ -513,7 +561,7 @@
                         <!-- NAT Config -->
                         <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 space-y-3">
                             <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
-                                <i data-lucide="shuffle" class="w-4 h-4 text-purple-500"></i> חוק Static NAT לשרת ה-Web
+                                <i data-lucide="shuffle" class="w-4 h-4 text-purple-500"></i> חוק <span class="en-badge-purple">Static NAT</span> לשרת ה-Web
                             </h4>
                             <p class="text-xs text-slate-500">בחרו את פקודת התרגום הנכונה מכתובת פנימית <code class="code-font">192.168.30.100</code> לציבורית <code class="code-font">212.143.1.50</code>:</p>
                             <select id="nat-cmd" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold code-font">
@@ -526,7 +574,7 @@
                         <!-- ACL Config -->
                         <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 space-y-3">
                             <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
-                                <i data-lucide="lock" class="w-4 h-4 text-red-500"></i> הגדרת Access Control List (ACL)
+                                <i data-lucide="lock" class="w-4 h-4 text-red-500"></i> הגדרת Access Control List (<span class="en-badge-light">ACL</span>)
                             </h4>
                             <p class="text-xs text-slate-500">נדרש לחסום את מחלקת מכירות (VLAN 10) מלהגיע לשרת ה-DMZ, אך לאפשר למחלקת פיתוח (VLAN 20):</p>
                             
@@ -566,7 +614,7 @@
                             <i data-lucide="activity" class="w-5 h-5 text-amber-600"></i>
                             משימה 4: סימולטור אימות ובדיקת פינג (Ping Test)
                         </h3>
-                        <p class="text-xs text-slate-500 mb-6">לחצו על כפתורי הסימולציה ובדקו אם הגדרתם נכון את הניתובים וה-ACLs:</p>
+                        <p class="text-xs text-slate-500 mb-6">לחצו על כפתורי הסימולציה ובדקו אם הגדרתם נכון את הניתובים וה-<span class="en-badge-light">ACLs</span>:</p>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                             <!-- Ping Test 1 -->
@@ -584,7 +632,7 @@
                             <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between">
                                 <div>
                                     <span class="font-bold text-xs text-slate-800">פינג: PC-Sales ➔ DMZ Web Server</span>
-                                    <p class="text-[11px] font-semibold text-red-600">תוצאה מצופה: BLOCKED BY ACL</p>
+                                    <p class="text-[11px] font-semibold text-red-600">תוצאה מצופה: BLOCKED BY <span class="en-badge-light">ACL</span></p>
                                 </div>
                                 <button onclick="runPingTest('sales-to-dmz')" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm">
                                     <i data-lucide="play" class="w-3.5 h-3.5"></i> הפעל Ping
@@ -614,39 +662,39 @@
                         <!-- 10 QUESTIONS GRID -->
                         <div class="space-y-4">
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">1. מהו התפקיד המרכזי של תתי-הממשקים (Subinterfaces) בארכיטקטורת Router-on-a-Stick?</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">1. מהו התפקיד המרכזי של תתי-הממשקים (<span class="en-badge-light">Subinterfaces</span>) בארכיטקטורת <span class="en-badge-light">Router-on-a-Stick</span>?</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">2. מדוע חובה להגדיר Switchport Mode Trunk בפורט המחובר מהמתג לראוטר?</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">2. מדוע חובה להגדיר <span class="en-badge-light">Switchport Mode Trunk</span> בפורט המחובר מהמתג לראוטר?</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">3. מה יקרה אם נשכח לרשום את הפקודה encapsulation dot1Q 10 בתת-הממשק של VLAN 10?</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">3. מה יקרה אם נשכח לרשום את הפקודה <code class="code-font font-bold text-amber-600">encapsulation dot1Q 10</code> בתת-הממשק של <span class="en-badge-light">VLAN 10</span>?</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">4. מה ההבדל בין Static NAT ל-PAT (Port Address Translation) ומתי נשתמש בכל אחד?</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">4. מה ההבדל בין <span class="en-badge-purple">Static NAT</span> ל-<span class="en-badge-purple">PAT</span> (<span class="en-badge-purple">Port Address Translation</span>) ומתי נשתמש בכל אחד?</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">5. כיצד רשימת אקסס-ליסט (ACL) מגנה על שרת ה-DMZ מפני פגיעות ברשתות הפנימיות?</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">5. כיצד רשימת אקסס-ליסט (<span class="en-badge-light">ACL</span>) מגנה על שרת ה-<span class="en-badge-purple">DMZ</span> מפני פגיעות ברשתות הפנימיות?</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">6. מהי חשיבות הכלל Implicit Deny בסוף כל רשימת ACL?</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">6. מהי חשיבות הכלל <span class="en-badge-purple">Implicit Deny</span> בסוף כל רשימת <span class="en-badge-light">ACL</span>?</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">7. הסבירו מה קורה לחבילת מידע (Packet) משלב יציאתה מ-PC-Dev עד הגעתה לשרת ה-Web ב-DMZ.</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">7. הסבירו מה קורה לחבילת מידע (<span class="en-badge-light">Packet</span>) משלב יציאתה מ-PC-Dev עד הגעתה לשרת ה-Web ב-<span class="en-badge-purple">DMZ</span>.</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">8. מהו תפקידו של ה-Default Gateway בהעברת מידע בין רשתות שונות?</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">8. מהו תפקידו של ה-<span class="en-badge-light">Default Gateway</span> בהעברת מידע בין רשתות שונות?</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">9. מה היתרון בחלוקת ארגון ל-VLANs נפרדים מבחינת אבטחה ועומסי שידור (Broadcast Domains)?</label>
+                                <label class="block font-bold text-xs text-slate-800 mb-2">9. מה היתרון בחלוקת ארגון ל-<span class="en-badge-light">VLANs</span> נפרדים מבחינת אבטחה ועומסי שידור (<span class="en-badge-light">Broadcast Domains</span>)?</label>
                                 <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                             <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
@@ -760,7 +808,7 @@
 
                 <p class="text-xs text-slate-600 bg-slate-50 border border-slate-200 p-2.5 rounded-xl leading-relaxed">
                     אני יודע שמדובר ב<b>חוויות סיכום מקיפה ומטורללת!</b> 🚀
-                    אתם מוזמנים לשאול אותי כל שאלה לגבי VLANs, Router-on-a-Stick, NAT, ACL ופיתרון תקלות!
+                    אתם מוזמנים לשאול אותי כל שאלה לגבי <span class="en-badge-light">VLANs</span>, <span class="en-badge-light">Router-on-a-Stick</span>, <span class="en-badge-light">NAT</span>, <span class="en-badge-light">ACL</span> ופיתרון תקלות!
                 </p>
 
                 <!-- SKILL TAGS -->
@@ -988,3 +1036,4 @@
     </script>
 </body>
 </html>
+
