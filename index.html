@@ -46,10 +46,10 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: #38bdf8;
             border: 1px solid #38bdf840;
-            padding: 1px 7px;
+            padding: 2px 8px;
             border-radius: 6px;
             font-weight: 700;
-            font-size: 0.85em;
+            font-size: 0.9em;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
             margin: 0 2px;
             vertical-align: middle;
@@ -61,10 +61,10 @@
             background-color: #f1f5f9;
             color: #2563eb;
             border: 1px solid #cbd5e1;
-            padding: 1px 7px;
+            padding: 2px 8px;
             border-radius: 6px;
             font-weight: 700;
-            font-size: 0.85em;
+            font-size: 0.9em;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             margin: 0 2px;
             vertical-align: middle;
@@ -76,10 +76,10 @@
             background-color: #faf5ff;
             color: #9333ea;
             border: 1px solid #e9d5ff;
-            padding: 1px 7px;
+            padding: 2px 8px;
             border-radius: 6px;
             font-weight: 700;
-            font-size: 0.85em;
+            font-size: 0.9em;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             margin: 0 2px;
             vertical-align: middle;
@@ -99,28 +99,27 @@
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 p-1 shadow-lg shadow-cyan-500/20 transform rotate-[30deg] transition-transform hover:rotate-0 duration-300">
                         <img src="https://lh3.googleusercontent.com/d/1BHxytxfATgrv3wpk_8slqpRX08p2Dzml" alt="אווטר סהר" class="w-full h-full object-cover rounded-xl bg-[#fefae0]">
                     </div>
-                    <span class="absolute -bottom-1 -right-1 bg-amber-400 text-slate-950 font-black text-[10px] px-1.5 py-0.5 rounded-full border-2 border-white shadow">
+                    <span class="absolute -bottom-1 -right-1 bg-amber-400 text-slate-950 font-black text-xs px-2 py-0.5 rounded-full border-2 border-white shadow">
                         PRO
                     </span>
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+                    <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2">
                         חוגגים הצלחה בתקשוב עם סהר! 🎉
                     </h1>
-                    <!-- תוקן מ"משימת סיכום" ל"חוויות סיכום" -->
-                    <p class="text-xs font-semibold text-slate-500">חוויות סיכום ארכיטקטורה: <span class="en-badge-light">VLANs</span>, <span class="en-badge-light">Router-on-a-Stick</span>, <span class="en-badge-light">NAT</span>, <span class="en-badge-light">ACL</span> & <span class="en-badge-light">Ping Test</span></p>
+                    <p class="text-sm font-semibold text-slate-600 mt-0.5">חוויות סיכום ארכיטקטורה: <span class="en-badge-light">VLANs</span>, <span class="en-badge-light">Router-on-a-Stick</span>, <span class="en-badge-light">NAT</span>, <span class="en-badge-light">ACL</span> & <span class="en-badge-light">Ping Test</span></p>
                 </div>
             </div>
 
             <!-- SCORE & LEVEL BADGES -->
             <div class="flex items-center gap-3">
-                <div class="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl flex items-center gap-2">
-                    <i data-lucide="award" class="w-4 h-4 text-amber-500"></i>
-                    <span class="text-xs font-bold text-slate-600">ניקוד פרויקט:</span>
-                    <span id="score-val" class="code-font font-black text-amber-600 text-sm">0 / 100</span>
+                <div class="bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-xl flex items-center gap-2">
+                    <i data-lucide="award" class="w-5 h-5 text-amber-500"></i>
+                    <span class="text-xs md:text-sm font-bold text-slate-700">ניקוד פרויקט:</span>
+                    <span id="score-val" class="code-font font-black text-amber-600 text-base">0 / 100</span>
                 </div>
-                <div class="bg-blue-50 border border-blue-200 text-blue-700 px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                <div class="bg-blue-50 border border-blue-200 text-blue-700 px-3.5 py-2 rounded-xl text-xs md:text-sm font-bold flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-ping"></span>
                     <span>סטטוס: מעבדת סיכום פעילה</span>
                 </div>
             </div>
@@ -128,28 +127,28 @@
 
         <!-- NAVIGATION TABS -->
         <div class="bg-slate-50 border-t border-slate-200/80 px-4 py-2">
-            <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto pb-1 text-xs font-bold">
-                <button onclick="switchTab('spec')" id="tab-spec" class="tab-btn bg-red-600 text-white px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm transition-all">
+            <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto pb-1 text-sm font-bold">
+                <button onclick="switchTab('spec')" id="tab-spec" class="tab-btn bg-red-600 text-white px-4 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition-all text-sm">
                     <i data-lucide="file-text" class="w-4 h-4"></i>
                     <span>1. מפרט התרחיש</span>
                 </button>
-                <button onclick="switchTab('vlan-ip')" id="tab-vlan-ip" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl flex items-center gap-2 transition-all">
+                <button onclick="switchTab('vlan-ip')" id="tab-vlan-ip" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all text-sm">
                     <i data-lucide="network" class="w-4 h-4 text-blue-600"></i>
                     <span>2. הקצאת IP & VLANs</span>
                 </button>
-                <button onclick="switchTab('roas')" id="tab-roas" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl flex items-center gap-2 transition-all">
+                <button onclick="switchTab('roas')" id="tab-roas" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all text-sm">
                     <i data-lucide="router" class="w-4 h-4 text-emerald-600"></i>
                     <span>3. Router-on-a-Stick</span>
                 </button>
-                <button onclick="switchTab('nat-acl')" id="tab-nat-acl" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl flex items-center gap-2 transition-all">
+                <button onclick="switchTab('nat-acl')" id="tab-nat-acl" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all text-sm">
                     <i data-lucide="shield-check" class="w-4 h-4 text-purple-600"></i>
                     <span>4. הגדרות NAT & ACL</span>
                 </button>
-                <button onclick="switchTab('ping')" id="tab-ping" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl flex items-center gap-2 transition-all">
+                <button onclick="switchTab('ping')" id="tab-ping" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all text-sm">
                     <i data-lucide="activity" class="w-4 h-4 text-amber-600"></i>
                     <span>5. בדיקת Ping & אימות</span>
                 </button>
-                <button onclick="switchTab('reflection')" id="tab-reflection" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl flex items-center gap-2 transition-all">
+                <button onclick="switchTab('reflection')" id="tab-reflection" class="tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all text-sm">
                     <i data-lucide="message-square" class="w-4 h-4 text-cyan-600"></i>
                     <span>6. 10 שאלות רפלקציה & Padlet</span>
                 </button>
@@ -168,10 +167,10 @@
                 <!-- VISUAL TOPOLOGY DIAGRAM CARD -->
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg text-white space-y-3">
                     <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <span class="text-xs font-bold text-cyan-400 flex items-center gap-1.5">
+                        <span class="text-sm font-bold text-cyan-400 flex items-center gap-1.5">
                             <i data-lucide="map" class="w-4 h-4"></i> דיאגרמת ארכיטקטורת הרשת
                         </span>
-                        <span class="text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-800/50 px-2 py-0.5 rounded">
+                        <span class="text-xs font-mono bg-cyan-950 text-cyan-300 border border-cyan-800/50 px-2 py-0.5 rounded">
                             TOPOLOGY_MAP
                         </span>
                     </div>
@@ -258,23 +257,23 @@
 
                 <!-- PERSISTENT SPECIFICATION SIDEBAR DETAILS -->
                 <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <div class="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider border-b border-slate-100 pb-2">
+                    <div class="flex items-center gap-2 text-blue-600 font-bold text-sm uppercase tracking-wider border-b border-slate-100 pb-2">
                         <i data-lucide="compass" class="w-4 h-4"></i>
                         מפרט הארכיטקטורה (מלווה תרגיל)
                     </div>
                     
-                    <p class="text-slate-600 text-xs leading-relaxed">
+                    <p class="text-slate-700 text-sm leading-relaxed">
                         תשתית תקשורת <span class="en-badge">CyberEnterprise</span>: הקמת שני סגמנטים פנימיים, <span class="en-badge-purple">DMZ</span>, ניתוב <span class="en-badge-light">ROAS</span>, תרגום <span class="en-badge-light">NAT</span>, ו-<span class="en-badge-light">ACL</span> לאבטחה.
                     </p>
 
                     <!-- TOPOLOGY CARDS IN SIDEBAR -->
                     <div class="space-y-3">
-                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-                            <div class="flex items-center gap-2 text-slate-800 font-bold text-xs mb-1">
-                                <i data-lucide="users" class="w-3.5 h-3.5 text-blue-500"></i>
+                        <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
+                            <div class="flex items-center gap-2 text-slate-900 font-bold text-sm mb-1">
+                                <i data-lucide="users" class="w-4 h-4 text-blue-500"></i>
                                 VLAN 10: Sales (מכירות)
                             </div>
-                            <ul class="text-[11px] text-slate-500 space-y-0.5">
+                            <ul class="text-xs text-slate-600 space-y-1">
                                 <li>• רשת: <code class="code-font text-blue-600 font-bold">192.168.10.0/24</code></li>
                                 <li>• IP לתחנה: <code class="code-font font-bold">192.168.10.10</code></li>
                                 <li>• Gateway: <code class="code-font font-bold">192.168.10.1</code></li>
@@ -282,12 +281,12 @@
                             </ul>
                         </div>
 
-                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-                            <div class="flex items-center gap-2 text-slate-800 font-bold text-xs mb-1">
-                                <i data-lucide="code" class="w-3.5 h-3.5 text-emerald-500"></i>
+                        <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
+                            <div class="flex items-center gap-2 text-slate-900 font-bold text-sm mb-1">
+                                <i data-lucide="code" class="w-4 h-4 text-emerald-500"></i>
                                 VLAN 20: R&D (פיתוח)
                             </div>
-                            <ul class="text-[11px] text-slate-500 space-y-0.5">
+                            <ul class="text-xs text-slate-600 space-y-1">
                                 <li>• רשת: <code class="code-font text-emerald-600 font-bold">192.168.20.0/24</code></li>
                                 <li>• IP לתחנה: <code class="code-font font-bold">192.168.20.20</code></li>
                                 <li>• Gateway: <code class="code-font font-bold">192.168.20.1</code></li>
@@ -295,12 +294,12 @@
                             </ul>
                         </div>
 
-                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-                            <div class="flex items-center gap-2 text-slate-800 font-bold text-xs mb-1">
-                                <i data-lucide="server" class="w-3.5 h-3.5 text-purple-500"></i>
+                        <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
+                            <div class="flex items-center gap-2 text-slate-900 font-bold text-sm mb-1">
+                                <i data-lucide="server" class="w-4 h-4 text-purple-500"></i>
                                 VLAN 30: DMZ (שרתים)
                             </div>
-                            <ul class="text-[11px] text-slate-500 space-y-0.5">
+                            <ul class="text-xs text-slate-600 space-y-1">
                                 <li>• רשת: <code class="code-font text-purple-600 font-bold">192.168.30.0/24</code></li>
                                 <li>• שרת Web: <code class="code-font font-bold">192.168.30.100</code></li>
                                 <li>• Static NAT: <code class="code-font font-bold">212.143.1.50</code></li>
@@ -309,11 +308,11 @@
                     </div>
 
                     <!-- TIP BOX -->
-                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[11px] text-amber-900 flex items-start gap-2">
-                        <span class="text-xl flex-shrink-0">🔥</span>
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-xs text-amber-950 flex items-start gap-2.5">
+                        <span class="text-2xl flex-shrink-0">🔥</span>
                         <div>
-                            <h4 class="font-bold text-amber-950 mb-0.5">טיפ מאחו!</h4>
-                            <p class="leading-normal">
+                            <h4 class="font-bold text-amber-950 text-sm mb-0.5">טיפ מאחו!</h4>
+                            <p class="leading-relaxed text-xs">
                                 ב-<span class="en-badge-light">ROAS</span> הממשק הפיזי של הראוטר ללא IP, ורק ה-<span class="en-badge-light">Subinterfaces</span> מקבלים IP ותיוג <code class="code-font font-bold">encapsulation dot1Q</code>!
                             </p>
                         </div>
@@ -328,12 +327,12 @@
                 <div id="sec-spec" class="tab-content space-y-6">
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
                         <div>
-                            <div class="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">
+                            <div class="flex items-center gap-2 text-blue-600 font-bold text-sm uppercase tracking-wider mb-2">
                                 <i data-lucide="compass" class="w-4 h-4"></i>
                                 תרחיש הארכיטקטורה המרכזי
                             </div>
-                            <h2 class="text-2xl font-black text-slate-900 mb-3">הקמת תשתית תקשורת מאובטחת לחברת CyberEnterprise</h2>
-                            <p class="text-slate-600 text-sm leading-relaxed">
+                            <h2 class="text-2xl md:text-3xl font-black text-slate-900 mb-3">הקמת תשתית תקשורת מאובטחת לחברת CyberEnterprise</h2>
+                            <p class="text-slate-700 text-base leading-relaxed">
                                 אתם משמשים כארכיטקטי הרשת הראשיים. משימתכם היא לתכנן ולהגדיר מאפס את רשת התקשורת הארגונית הכוללת שני סגמנטים פנימיים (מכירות ופיתוח), רשת שרתים (<span class="en-badge-purple">DMZ</span>), ניתוב <span class="en-badge-light">Inter-VLAN</span> באמצעות מתודולוגיית <span class="en-badge-light">Router-on-a-Stick</span>, תרגום כתובות <span class="en-badge-light">NAT</span> לאינטרנט, והגדרת <span class="en-badge-light">ACL</span> לאבטחת הגישה לשרתים.
                             </p>
                         </div>
@@ -342,17 +341,17 @@
                         <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 rounded-2xl p-6 text-white border-2 border-cyan-500/50 shadow-xl space-y-5">
                             <div class="flex items-center justify-between border-b border-slate-700/80 pb-3">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400">
-                                        <i data-lucide="layers" class="w-6 h-6"></i>
+                                    <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400 flex-shrink-0">
+                                        <i data-lucide="layers" class="w-7 h-7"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-lg md:text-xl font-black tracking-wide text-cyan-300">
+                                        <h3 class="text-xl md:text-2xl font-black tracking-wide text-cyan-300">
                                             📋 תמונת מצב: מה כבר מוגדר ומה המשימה שלך?
                                         </h3>
-                                        <p class="text-xs text-slate-300">קראו בעיון לפני תחילת העבודה בלשוניות הבאות</p>
+                                        <p class="text-sm text-slate-300 mt-0.5">קראו בעיון לפני תחילת העבודה בלשוניות הבאות</p>
                                     </div>
                                 </div>
-                                <span class="bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 text-xs font-mono font-bold px-3 py-1 rounded-full">
+                                <span class="bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 text-xs md:text-sm font-mono font-bold px-3 py-1 rounded-full">
                                     LAB_STATUS_CHECK
                                 </span>
                             </div>
@@ -360,21 +359,21 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <!-- ALREADY CONFIG CARD -->
                                 <div class="bg-slate-800/80 border border-emerald-500/40 rounded-xl p-4 space-y-3">
-                                    <div class="flex items-center gap-2 text-emerald-400 font-bold text-base border-b border-slate-700 pb-2">
-                                        <i data-lucide="check-circle-2" class="w-5 h-5"></i>
-                                        <span>מה כבר מוגדר במערכת? (קרא וחסוך זמן)</span>
+                                    <div class="flex items-center gap-2 text-emerald-400 font-bold text-lg border-b border-slate-700 pb-2">
+                                        <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                                        <span>מה כבר מוגדר במערכת?</span>
                                     </div>
-                                    <ul class="text-xs md:text-sm space-y-2 text-slate-200">
+                                    <ul class="text-sm md:text-base space-y-2.5 text-slate-200">
                                         <li class="flex items-start gap-2">
-                                            <span class="text-emerald-400 font-bold">✓</span>
+                                            <span class="text-emerald-400 font-bold text-lg">✓</span>
                                             <span><b>מתג מרכזי (<span class="en-badge">Core Switch</span>):</b> הוילאנים (<span class="en-badge-light">VLAN 10, 20, 30</span>) והפורטים (<span class="en-badge-light">Access Ports</span>) כבר מוגדרים ומשויכים לתחנות!</span>
                                         </li>
                                         <li class="flex items-start gap-2">
-                                            <span class="text-emerald-400 font-bold">✓</span>
+                                            <span class="text-emerald-400 font-bold text-lg">✓</span>
                                             <span><b>כבלים וחיבורים:</b> כל החיבורים הפיזיים בין התחנות, המתג והראוטר מחוברים בצורה תקינה.</span>
                                         </li>
                                         <li class="flex items-start gap-2">
-                                            <span class="text-emerald-400 font-bold">✓</span>
+                                            <span class="text-emerald-400 font-bold text-lg">✓</span>
                                             <span><b>שרת Web ב-<span class="en-badge-purple">DMZ</span>:</b> השרת עובד וממתין לקבלת פניות בכתובת <code class="code-font text-purple-300 font-bold">192.168.30.100</code>.</span>
                                         </li>
                                     </ul>
@@ -382,11 +381,11 @@
 
                                 <!-- STUDENT TODO CARD -->
                                 <div class="bg-slate-800/80 border border-amber-500/40 rounded-xl p-4 space-y-3">
-                                    <div class="flex items-center gap-2 text-amber-400 font-bold text-base border-b border-slate-700 pb-2">
-                                        <i data-lucide="wrench" class="w-5 h-5"></i>
-                                        <span>מה עליך להגדיר בעצמך? (משימות התלמיד)</span>
+                                    <div class="flex items-center gap-2 text-amber-400 font-bold text-lg border-b border-slate-700 pb-2">
+                                        <i data-lucide="wrench" class="w-6 h-6"></i>
+                                        <span>מה עליך להגדיר בעצמך?</span>
                                     </div>
-                                    <ul class="text-xs md:text-sm space-y-2 text-slate-200">
+                                    <ul class="text-sm md:text-base space-y-2.5 text-slate-200">
                                         <li class="flex items-start gap-2">
                                             <span class="text-amber-400 font-bold">⚙️</span>
                                             <span><b>בלשונית 2:</b> הגדרת כתובות IP ו-<span class="en-badge-light">Default Gateway</span> נכונים למחשבי ה-Sales וה-Dev.</span>
@@ -408,7 +407,7 @@
                             </div>
                         </div>
 
-                        <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 text-xs font-semibold">
+                        <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 text-sm md:text-base font-semibold">
                             💡 **שימו לב:** מפרט הנתונים, הכתובות והתרשים הויזואלי מופיעים כעת לצד המסך וילוו אתכם לכל אורך תהליך ההגדרה והבדיקות!
                         </div>
                     </div>
@@ -418,29 +417,29 @@
                 <div id="sec-vlan-ip" class="tab-content hidden space-y-6">
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                                <i data-lucide="network" class="w-5 h-5 text-blue-600"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="network" class="w-6 h-6 text-blue-600"></i>
                                 משימה 1: הגדרת כתובות IP וחלוקת <span class="en-badge-light">VLANs</span> ברכיבי הקצה
                             </h3>
-                            <p class="text-xs text-slate-500">הגדירו את הכתובות ושערי ברירת המחדל (Default Gateway) המתאימים לכל תחנה בהתאם למפרט:</p>
+                            <p class="text-sm md:text-base text-slate-600">הגדירו את הכתובות ושערי ברירת המחדל (Default Gateway) המתאימים לכל תחנה בהתאם למפרט:</p>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- PC-Sales Config -->
-                            <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
+                            <div class="border border-slate-200 rounded-xl p-5 bg-slate-50 space-y-4">
                                 <div class="flex items-center justify-between border-b pb-2 border-slate-200">
-                                    <span class="font-bold text-xs text-blue-700 flex items-center gap-1.5">
-                                        <i data-lucide="laptop" class="w-4 h-4"></i> PC-Sales (VLAN 10)
+                                    <span class="font-bold text-sm md:text-base text-blue-700 flex items-center gap-2">
+                                        <i data-lucide="laptop" class="w-5 h-5"></i> PC-Sales (VLAN 10)
                                     </span>
-                                    <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full">מכירות</span>
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-full">מכירות</span>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
-                                    <input type="text" id="ip-pc-sales" value="192.168.10.10" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
+                                    <label class="block text-sm font-bold text-slate-700 mb-1.5">כתובת IP לתחנה:</label>
+                                    <input type="text" id="ip-pc-sales" value="192.168.10.10" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-sm code-font font-bold text-slate-800">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
-                                    <select id="gw-pc-sales" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
+                                    <label class="block text-sm font-bold text-slate-700 mb-1.5">שער ברירת מחדל (Default Gateway):</label>
+                                    <select id="gw-pc-sales" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-800">
                                         <option value="wrong">192.168.20.1</option>
                                         <option value="correct" selected>192.168.10.1</option>
                                         <option value="wrong2">192.168.30.1</option>
@@ -449,20 +448,20 @@
                             </div>
 
                             <!-- PC-Dev Config -->
-                            <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
+                            <div class="border border-slate-200 rounded-xl p-5 bg-slate-50 space-y-4">
                                 <div class="flex items-center justify-between border-b pb-2 border-slate-200">
-                                    <span class="font-bold text-xs text-emerald-700 flex items-center gap-1.5">
-                                        <i data-lucide="laptop" class="w-4 h-4"></i> PC-Dev (VLAN 20)
+                                    <span class="font-bold text-sm md:text-base text-emerald-700 flex items-center gap-2">
+                                        <i data-lucide="laptop" class="w-5 h-5"></i> PC-Dev (VLAN 20)
                                     </span>
-                                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">פיתוח</span>
+                                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full">פיתוח</span>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-600 mb-1">כתובת IP לתחנה:</label>
-                                    <input type="text" id="ip-pc-dev" value="192.168.20.20" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs code-font font-bold text-slate-800">
+                                    <label class="block text-sm font-bold text-slate-700 mb-1.5">כתובת IP לתחנה:</label>
+                                    <input type="text" id="ip-pc-dev" value="192.168.20.20" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-sm code-font font-bold text-slate-800">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-600 mb-1">שער ברירת מחדל (Default Gateway):</label>
-                                    <select id="gw-pc-dev" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold text-slate-800">
+                                    <label class="block text-sm font-bold text-slate-700 mb-1.5">שער ברירת מחדל (Default Gateway):</label>
+                                    <select id="gw-pc-dev" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-sm font-bold text-slate-800">
                                         <option value="correct" selected>192.168.20.1</option>
                                         <option value="wrong">192.168.10.1</option>
                                         <option value="wrong2">192.168.30.1</option>
@@ -472,8 +471,8 @@
                         </div>
 
                         <div class="pt-2">
-                            <button onclick="applyIpConfig()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                            <button onclick="applyIpConfig()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-7 py-3 rounded-xl text-sm md:text-base transition-all shadow-md flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
                                 <span>בדוק והחל פקודות במסוף</span>
                             </button>
                         </div>
@@ -484,53 +483,53 @@
                 <div id="sec-roas" class="tab-content hidden space-y-6">
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                                <i data-lucide="router" class="w-5 h-5 text-emerald-600"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="router" class="w-6 h-6 text-emerald-600"></i>
                                 משימה 2: הגדרת <span class="en-badge-light">Router-on-a-Stick</span> בראוטר המרכזי
                             </h3>
-                            <p class="text-xs text-slate-500">ביחרו את הפקודות והתיוגים הנכונים עבור תתי-הממשקים (<span class="en-badge-light">Subinterfaces</span>) בראוטר:</p>
+                            <p class="text-sm md:text-base text-slate-600">ביחרו את הפקודות והתיוגים הנכונים עבור תתי-הממשקים (<span class="en-badge-light">Subinterfaces</span>) בראוטר:</p>
                         </div>
 
                         <div class="space-y-4">
                             <!-- Subinterface g0/0.10 -->
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col md:flex-row items-md-center justify-between gap-4">
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                                 <div>
-                                    <span class="code-font font-bold text-xs text-blue-600">Subinterface GigabitEthernet 0/0.10 (VLAN 10)</span>
-                                    <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער למכירות</p>
+                                    <span class="code-font font-bold text-sm md:text-base text-blue-600">Subinterface GigabitEthernet 0/0.10 (VLAN 10)</span>
+                                    <p class="text-xs md:text-sm text-slate-600 mt-0.5">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער למכירות</p>
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <select id="roas-vlan10-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+                                    <select id="roas-vlan10-encap" class="bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm font-bold">
                                         <option value="none">-- בחר תיוג Encap --</option>
                                         <option value="correct">encapsulation dot1Q 10</option>
                                         <option value="wrong">encapsulation dot1Q 20</option>
                                     </select>
-                                    <input type="text" id="roas-vlan10-ip" value="192.168.10.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
+                                    <input type="text" id="roas-vlan10-ip" value="192.168.10.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm code-font text-slate-800 w-full sm:w-56">
                                 </div>
                             </div>
 
                             <!-- Subinterface g0/0.20 -->
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col md:flex-row items-md-center justify-between gap-4">
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                                 <div>
-                                    <span class="code-font font-bold text-xs text-emerald-600">Subinterface GigabitEthernet 0/0.20 (VLAN 20)</span>
-                                    <p class="text-[11px] text-slate-500">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער לפיתוח</p>
+                                    <span class="code-font font-bold text-sm md:text-base text-emerald-600">Subinterface GigabitEthernet 0/0.20 (VLAN 20)</span>
+                                    <p class="text-xs md:text-sm text-slate-600 mt-0.5">תיוג הפרוטוקול וקביעת כתובת ה-IP של השער לפיתוח</p>
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <select id="roas-vlan20-encap" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+                                    <select id="roas-vlan20-encap" class="bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm font-bold">
                                         <option value="none">-- בחר תיוג Encap --</option>
                                         <option value="correct">encapsulation dot1Q 20</option>
                                         <option value="wrong">encapsulation dot1Q 10</option>
                                     </select>
-                                    <input type="text" id="roas-vlan20-ip" value="192.168.20.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2 text-xs code-font text-slate-800 w-52">
+                                    <input type="text" id="roas-vlan20-ip" value="192.168.20.1 255.255.255.0" class="bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm code-font text-slate-800 w-full sm:w-56">
                                 </div>
                             </div>
 
                             <!-- Trunk port check -->
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-center justify-between">
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                                 <div>
-                                    <span class="font-bold text-xs text-slate-800">מצב הפורט במתג המחובר לראוטר:</span>
-                                    <p class="text-[11px] text-slate-500">מה הגדרת ה-Switchport הנדרשת במתג בפורט המחובר לראוטר?</p>
+                                    <span class="font-bold text-sm md:text-base text-slate-800">מצב הפורט במתג המחובר לראוטר:</span>
+                                    <p class="text-xs md:text-sm text-slate-600 mt-0.5">מה הגדרת ה-Switchport הנדרשת במתג בפורט המחובר לראוטר?</p>
                                 </div>
-                                <select id="sw-trunk-mode" class="bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold">
+                                <select id="sw-trunk-mode" class="bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm font-bold w-full md:w-auto">
                                     <option value="none">-- בחר מצב פורט --</option>
                                     <option value="access">switchport mode access</option>
                                     <option value="correct">switchport mode trunk</option>
@@ -539,8 +538,8 @@
                         </div>
 
                         <div class="pt-2">
-                            <button onclick="applyRoasConfig()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                            <button onclick="applyRoasConfig()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold px-7 py-3 rounded-xl text-sm md:text-base transition-all shadow-md flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
                                 <span>בדוק והחל פקודות במסוף</span>
                             </button>
                         </div>
@@ -551,20 +550,20 @@
                 <div id="sec-nat-acl" class="tab-content hidden space-y-6">
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                                <i data-lucide="shield-check" class="w-5 h-5 text-purple-600"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-6 h-6 text-purple-600"></i>
                                 משימה 3: הגדרות <span class="en-badge-light">NAT</span> ורשימות אבטחה (<span class="en-badge-light">ACL</span>)
                             </h3>
-                            <p class="text-xs text-slate-500">הגדירו את חוק ה-Static NAT לשרתי ה-DMZ ואת כללי ה-ACL הנדרשים:</p>
+                            <p class="text-sm md:text-base text-slate-600">הגדירו את חוק ה-Static NAT לשרתי ה-DMZ ואת כללי ה-ACL הנדרשים:</p>
                         </div>
 
                         <!-- NAT Config -->
-                        <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 space-y-3">
-                            <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
-                                <i data-lucide="shuffle" class="w-4 h-4 text-purple-500"></i> חוק <span class="en-badge-purple">Static NAT</span> לשרת ה-Web
+                        <div class="border border-slate-200 p-5 rounded-xl bg-slate-50 space-y-3">
+                            <h4 class="font-bold text-base md:text-lg text-slate-800 flex items-center gap-2">
+                                <i data-lucide="shuffle" class="w-5 h-5 text-purple-500"></i> חוק <span class="en-badge-purple">Static NAT</span> לשרת ה-Web
                             </h4>
-                            <p class="text-xs text-slate-500">בחרו את פקודת התרגום הנכונה מכתובת פנימית <code class="code-font">192.168.30.100</code> לציבורית <code class="code-font">212.143.1.50</code>:</p>
-                            <select id="nat-cmd" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs font-bold code-font">
+                            <p class="text-xs md:text-sm text-slate-600">בחרו את פקודת התרגום הנכונה מכתובת פנימית <code class="code-font">192.168.30.100</code> לציבורית <code class="code-font">212.143.1.50</code>:</p>
+                            <select id="nat-cmd" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm font-bold code-font">
                                 <option value="none">-- בחר פקודת NAT --</option>
                                 <option value="correct">ip nat inside source static 192.168.30.100 212.143.1.50</option>
                                 <option value="wrong">ip nat inside source static 212.143.1.50 192.168.30.100</option>
@@ -572,24 +571,24 @@
                         </div>
 
                         <!-- ACL Config -->
-                        <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 space-y-3">
-                            <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
-                                <i data-lucide="lock" class="w-4 h-4 text-red-500"></i> הגדרת Access Control List (<span class="en-badge-light">ACL</span>)
+                        <div class="border border-slate-200 p-5 rounded-xl bg-slate-50 space-y-3">
+                            <h4 class="font-bold text-base md:text-lg text-slate-800 flex items-center gap-2">
+                                <i data-lucide="lock" class="w-5 h-5 text-red-500"></i> הגדרת Access Control List (<span class="en-badge-light">ACL</span>)
                             </h4>
-                            <p class="text-xs text-slate-500">נדרש לחסום את מחלקת מכירות (VLAN 10) מלהגיע לשרת ה-DMZ, אך לאפשר למחלקת פיתוח (VLAN 20):</p>
+                            <p class="text-xs md:text-sm text-slate-600">נדרש לחסום את מחלקת מכירות (VLAN 10) מלהגיע לשרת ה-DMZ, אך לאפשר למחלקת פיתוח (VLAN 20):</p>
                             
-                            <div class="space-y-2 text-xs">
-                                <div class="flex items-center gap-2">
-                                    <span class="w-24 font-bold text-slate-700">כלל 1 (VLAN 10):</span>
-                                    <select id="acl-vlan10" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
+                            <div class="space-y-3 text-xs md:text-sm">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <span class="w-32 font-bold text-slate-800">כלל 1 (VLAN 10):</span>
+                                    <select id="acl-vlan10" class="flex-grow bg-white border border-slate-300 rounded-lg p-2.5 font-bold">
                                         <option value="none">-- בחר פעולה --</option>
                                         <option value="correct">access-list 100 deny ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
                                         <option value="wrong">access-list 100 permit ip 192.168.10.0 0.0.0.255 host 192.168.30.100</option>
                                     </select>
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="w-24 font-bold text-slate-700">כלל 2 (כל שאר התנועה):</span>
-                                    <select id="acl-default" class="flex-grow bg-white border border-slate-300 rounded-lg p-2 font-bold">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <span class="w-32 font-bold text-slate-800">כלל 2 (כל השאר):</span>
+                                    <select id="acl-default" class="flex-grow bg-white border border-slate-300 rounded-lg p-2.5 font-bold">
                                         <option value="none">-- בחר פעולה --</option>
                                         <option value="correct">access-list 100 permit ip any any</option>
                                         <option value="wrong">access-list 100 deny ip any any</option>
@@ -599,8 +598,8 @@
                         </div>
 
                         <div class="pt-2">
-                            <button onclick="applyNatAclConfig()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
-                                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                            <button onclick="applyNatAclConfig()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold px-7 py-3 rounded-xl text-sm md:text-base transition-all shadow-md flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
                                 <span>בדוק והחל פקודות במסוף</span>
                             </button>
                         </div>
@@ -610,38 +609,38 @@
                 <!-- SECTION 5: PING SIMULATOR & VALIDATION -->
                 <div id="sec-ping" class="tab-content hidden space-y-6">
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                            <i data-lucide="activity" class="w-5 h-5 text-amber-600"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i data-lucide="activity" class="w-6 h-6 text-amber-600"></i>
                             משימה 4: סימולטור אימות ובדיקת פינג (Ping Test)
                         </h3>
-                        <p class="text-xs text-slate-500 mb-6">לחצו על כפתורי הסימולציה ובדקו אם הגדרתם נכון את הניתובים וה-<span class="en-badge-light">ACLs</span>:</p>
+                        <p class="text-sm md:text-base text-slate-600 mb-6">לחצו על כפתורי הסימולציה ובדקו אם הגדרתם נכון את הניתובים וה-<span class="en-badge-light">ACLs</span>:</p>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                             <!-- Ping Test 1 -->
-                            <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between">
+                            <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between gap-3">
                                 <div>
-                                    <span class="font-bold text-xs text-slate-800">פינג: PC-Dev ➔ DMZ Web Server</span>
-                                    <p class="text-[11px] font-semibold text-emerald-600">תוצאה מצופה: SUCCESS (200 OK)</p>
+                                    <span class="font-bold text-sm text-slate-800 block">פינג: PC-Dev ➔ DMZ Web Server</span>
+                                    <p class="text-xs md:text-sm font-semibold text-emerald-600 mt-1">תוצאה מצופה: SUCCESS (200 OK)</p>
                                 </div>
-                                <button onclick="runPingTest('dev-to-dmz')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm">
-                                    <i data-lucide="play" class="w-3.5 h-3.5"></i> הפעל Ping
+                                <button onclick="runPingTest('dev-to-dmz')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-lg text-xs md:text-sm transition-all flex items-center gap-1.5 shadow-sm flex-shrink-0">
+                                    <i data-lucide="play" class="w-4 h-4"></i> הפעל Ping
                                 </button>
                             </div>
 
                             <!-- Ping Test 2 -->
-                            <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between">
+                            <div class="border border-slate-200 p-4 rounded-xl bg-slate-50 flex items-center justify-between gap-3">
                                 <div>
-                                    <span class="font-bold text-xs text-slate-800">פינג: PC-Sales ➔ DMZ Web Server</span>
-                                    <p class="text-[11px] font-semibold text-red-600">תוצאה מצופה: BLOCKED BY <span class="en-badge-light">ACL</span></p>
+                                    <span class="font-bold text-sm text-slate-800 block">פינג: PC-Sales ➔ DMZ Web Server</span>
+                                    <p class="text-xs md:text-sm font-semibold text-red-600 mt-1">תוצאה מצופה: BLOCKED BY <span class="en-badge-light">ACL</span></p>
                                 </div>
-                                <button onclick="runPingTest('sales-to-dmz')" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm">
-                                    <i data-lucide="play" class="w-3.5 h-3.5"></i> הפעל Ping
+                                <button onclick="runPingTest('sales-to-dmz')" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2.5 rounded-lg text-xs md:text-sm transition-all flex items-center gap-1.5 shadow-sm flex-shrink-0">
+                                    <i data-lucide="play" class="w-4 h-4"></i> הפעל Ping
                                 </button>
                             </div>
                         </div>
 
                         <!-- Terminal Console -->
-                        <div class="bg-slate-950 rounded-xl p-4 text-xs code-font text-emerald-400 space-y-2 border border-slate-800 min-h-[160px]" id="terminal-console">
+                        <div class="bg-slate-950 rounded-xl p-4 text-xs md:text-sm code-font text-emerald-400 space-y-2 border border-slate-800 min-h-[160px]" id="terminal-console">
                             <p class="text-slate-500">// CYBER_ENTERPRISE ROUTER CONSOLE V10.4</p>
                             <p class="text-slate-400">מוכן להרצת בדיקות תקשורת. לחצו על כפתורי ה-Ping למעלה להרצה...</p>
                         </div>
@@ -652,54 +651,54 @@
                 <div id="sec-reflection" class="tab-content hidden space-y-6">
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                                <i data-lucide="message-square" class="w-5 h-5 text-cyan-600"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="message-square" class="w-6 h-6 text-cyan-600"></i>
                                 10 שאלות רפלקציה והבנה מעמיקה
                             </h3>
-                            <p class="text-xs text-slate-500">ענו על השאלות הבאות כדי לסכם את הידע שלכם בארכיטקטורת רשתות:</p>
+                            <p class="text-sm md:text-base text-slate-600">ענו על השאלות הבאות כדי לסכם את הידע שלכם בארכיטקטורת רשתות:</p>
                         </div>
 
                         <!-- 10 QUESTIONS GRID -->
                         <div class="space-y-4">
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">1. מהו התפקיד המרכזי של תתי-הממשקים (<span class="en-badge-light">Subinterfaces</span>) בארכיטקטורת <span class="en-badge-light">Router-on-a-Stick</span>?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">1. מהו התפקיד המרכזי של תתי-הממשקים (<span class="en-badge-light">Subinterfaces</span>) בארכיטקטורת <span class="en-badge-light">Router-on-a-Stick</span>?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">2. מדוע חובה להגדיר <span class="en-badge-light">Switchport Mode Trunk</span> בפורט המחובר מהמתג לראוטר?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">2. מדוע חובה להגדיר <span class="en-badge-light">Switchport Mode Trunk</span> בפורט המחובר מהמתג לראוטר?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">3. מה יקרה אם נשכח לרשום את הפקודה <code class="code-font font-bold text-amber-600">encapsulation dot1Q 10</code> בתת-הממשק של <span class="en-badge-light">VLAN 10</span>?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">3. מה יקרה אם נשכח לרשום את הפקודה <code class="code-font font-bold text-amber-600">encapsulation dot1Q 10</code> בתת-הממשק של <span class="en-badge-light">VLAN 10</span>?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">4. מה ההבדל בין <span class="en-badge-purple">Static NAT</span> ל-<span class="en-badge-purple">PAT</span> (<span class="en-badge-purple">Port Address Translation</span>) ומתי נשתמש בכל אחד?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">4. מה ההבדל בין <span class="en-badge-purple">Static NAT</span> ל-<span class="en-badge-purple">PAT</span> (<span class="en-badge-purple">Port Address Translation</span>) ומתי נשתמש בכל אחד?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">5. כיצד רשימת אקסס-ליסט (<span class="en-badge-light">ACL</span>) מגנה על שרת ה-<span class="en-badge-purple">DMZ</span> מפני פגיעות ברשתות הפנימיות?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">5. כיצד רשימת אקסס-ליסט (<span class="en-badge-light">ACL</span>) מגנה על שרת ה-<span class="en-badge-purple">DMZ</span> מפני פגיעות ברשתות הפנימיות?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">6. מהי חשיבות הכלל <span class="en-badge-purple">Implicit Deny</span> בסוף כל רשימת <span class="en-badge-light">ACL</span>?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">6. מהי חשיבות הכלל <span class="en-badge-purple">Implicit Deny</span> בסוף כל רשימת <span class="en-badge-light">ACL</span>?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">7. הסבירו מה קורה לחבילת מידע (<span class="en-badge-light">Packet</span>) משלב יציאתה מ-PC-Dev עד הגעתה לשרת ה-Web ב-<span class="en-badge-purple">DMZ</span>.</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">7. הסבירו מה קורה לחבילת מידע (<span class="en-badge-light">Packet</span>) משלב יציאתה מ-PC-Dev עד הגעתה לשרת ה-Web ב-<span class="en-badge-purple">DMZ</span>.</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">8. מהו תפקידו של ה-<span class="en-badge-light">Default Gateway</span> בהעברת מידע בין רשתות שונות?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">8. מהו תפקידו של ה-<span class="en-badge-light">Default Gateway</span> בהעברת מידע בין רשתות שונות?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">9. מה היתרון בחלוקת ארגון ל-<span class="en-badge-light">VLANs</span> נפרדים מבחינת אבטחה ועומסי שידור (<span class="en-badge-light">Broadcast Domains</span>)?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">9. מה היתרון בחלוקת ארגון ל-<span class="en-badge-light">VLANs</span> נפרדים מבחינת אבטחה ועומסי שידור (<span class="en-badge-light">Broadcast Domains</span>)?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-                                <label class="block font-bold text-xs text-slate-800 mb-2">10. רפלקציה אישית: מה היה האתגר הגדול ביותר עבורכם בבניית המעבדה המסכמת וכיצד פתרתם אותו?</label>
-                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
+                            <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl">
+                                <label class="block font-bold text-sm md:text-base text-slate-800 mb-2">10. רפלקציה אישית: מה היה האתגר הגדול ביותר עבורכם בבניית המעבדה המסכמת וכיצד פתרתם אותו?</label>
+                                <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="הקלד את תשובתך כאן..."></textarea>
                             </div>
                         </div>
 
@@ -708,11 +707,11 @@
                             <div class="w-12 h-12 bg-cyan-500 text-white rounded-full flex items-center justify-center mx-auto shadow-md">
                                 <i data-lucide="layout" class="w-6 h-6"></i>
                             </div>
-                            <h4 class="font-black text-slate-900 text-base">לוח שיתוף ורפלקציה כיתתי (Padlet)</h4>
-                            <p class="text-xs text-slate-600 max-w-lg mx-auto">
+                            <h4 class="font-black text-slate-900 text-lg">לוח שיתוף ורפלקציה כיתתי (Padlet)</h4>
+                            <p class="text-sm text-slate-600 max-w-lg mx-auto">
                                 [אזור ייעודי למורה להטמעת לוח Padlet כיתתי. ניתן להדביק כאן את קוד ה-Iframe או הקישור ללוח הפאדלט של הכיתה].
                             </p>
-                            <div class="bg-white border border-slate-200 rounded-xl p-8 min-h-[180px] flex items-center justify-center text-slate-400 text-xs italic">
+                            <div class="bg-white border border-slate-200 rounded-xl p-8 min-h-[180px] flex items-center justify-center text-slate-400 text-sm italic">
                                 -- כאן יופיע לוח ה-Padlet של המורה --
                             </div>
                         </div>
@@ -729,34 +728,34 @@
                                 <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
                                 <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
                             </div>
-                            <span class="text-xs font-bold text-slate-300 mr-2 flex items-center gap-1.5 code-font">
+                            <span class="text-xs md:text-sm font-bold text-slate-300 mr-2 flex items-center gap-1.5 code-font">
                                 <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i> CISCO_CLI_TERMINAL // PACKET_TRACER_SIM
                             </span>
                         </div>
-                        <div class="flex items-center gap-2 text-[11px] font-bold text-slate-400">
-                            <span class="bg-slate-800 text-cyan-400 px-2 py-0.5 rounded border border-slate-700">עברית מימין | פקודות משמאל ⚡</span>
-                            <button onclick="clearTerminal()" class="hover:text-white transition-colors flex items-center gap-1 bg-slate-800 px-2 py-0.5 rounded">
-                                <i data-lucide="trash-2" class="w-3 h-3"></i> ניקוי
+                        <div class="flex items-center gap-2 text-xs md:text-sm font-bold text-slate-400">
+                            <span class="bg-slate-800 text-cyan-400 px-2.5 py-1 rounded border border-slate-700">עברית מימין | פקודות משמאל ⚡</span>
+                            <button onclick="clearTerminal()" class="hover:text-white transition-colors flex items-center gap-1 bg-slate-800 px-2.5 py-1 rounded">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> ניקוי
                             </button>
                         </div>
                     </div>
 
                     <!-- TERMINAL LOG BODY -->
-                    <div id="cli-log" class="p-4 bg-slate-950/90 h-64 overflow-y-auto space-y-2 text-xs border-b border-slate-800">
+                    <div id="cli-log" class="p-4 bg-slate-950/90 h-64 overflow-y-auto space-y-2 text-xs md:text-sm border-b border-slate-800">
                         <div class="text-slate-500 border-b border-slate-800/80 pb-2 flex justify-between items-center text-right">
                             <span class="text-emerald-400 font-sans font-bold">💻 חלונית המסוף פעילה! לחץ על כפתורי ה-"בדוק" כדי להריץ את הבחירות ב-CLI:</span>
-                            <span class="font-mono text-[10px] text-slate-500">SYSTEM_READY</span>
+                            <span class="font-mono text-xs text-slate-500">SYSTEM_READY</span>
                         </div>
-                        <div id="cli-output" class="space-y-1.5"></div>
+                        <div id="cli-output" class="space-y-2"></div>
                     </div>
 
                     <!-- MANUAL COMMAND INPUT FORM -->
-                    <form onsubmit="handleManualCommand(event)" class="bg-slate-900 p-2.5 flex items-center gap-2" dir="ltr">
-                        <span class="text-cyan-400 code-font font-bold text-xs pl-2 whitespace-nowrap">Router(config)#</span>
-                        <input type="text" id="manual-cli-input" placeholder="Enter command manually (e.g., ip route 0.0.0.0 0.0.0.0 212.143.1.1)..." class="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-emerald-400 code-font focus:outline-none focus:border-cyan-500 transition-all">
-                        <button type="submit" class="bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs px-4 py-1.5 rounded-lg transition-all flex items-center gap-1 font-sans">
+                    <form onsubmit="handleManualCommand(event)" class="bg-slate-900 p-3 flex items-center gap-2" dir="ltr">
+                        <span class="text-cyan-400 code-font font-bold text-xs md:text-sm pl-2 whitespace-nowrap">Router(config)#</span>
+                        <input type="text" id="manual-cli-input" placeholder="Enter command manually (e.g., ip route 0.0.0.0 0.0.0.0 212.143.1.1)..." class="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs md:text-sm text-emerald-400 code-font focus:outline-none focus:border-cyan-500 transition-all">
+                        <button type="submit" class="bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs md:text-sm px-5 py-2 rounded-lg transition-all flex items-center gap-1.5 font-sans">
                             <span>הרץ</span>
-                            <i data-lucide="send" class="w-3 h-3"></i>
+                            <i data-lucide="send" class="w-4 h-4"></i>
                         </button>
                     </form>
                 </div>
@@ -782,37 +781,37 @@
         </button>
 
         <!-- FLOATING BOT DIALOG BOX (HIDDEN BY DEFAULT) -->
-        <div id="bot-window" class="hidden absolute bottom-16 left-0 w-80 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden font-sans transition-all duration-300">
+        <div id="bot-window" class="hidden absolute bottom-16 left-0 w-80 md:w-96 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden font-sans transition-all duration-300">
             <!-- BOT HEADER -->
-            <div class="bg-slate-900 text-white px-4 py-2.5 flex items-center justify-between text-xs font-bold code-font">
-                <span class="flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <div class="bg-slate-900 text-white px-4 py-3 flex items-center justify-between text-xs md:text-sm font-bold code-font">
+                <span class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     NODE: DAN-GPT // ONLINE
                 </span>
                 <button onclick="toggleBotWindow()" class="text-slate-400 hover:text-white transition-colors">
-                    <i data-lucide="x" class="w-4 h-4"></i>
+                    <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
 
             <!-- BOT CONTENT -->
-            <div class="p-4 space-y-3">
+            <div class="p-4 space-y-3.5">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 rounded-full border-2 border-cyan-500 p-0.5 flex-shrink-0 bg-slate-900 overflow-hidden">
                         <img src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="דן GPT" class="w-full h-full object-cover rounded-full">
                     </div>
                     <div>
-                        <h4 class="font-black text-sm text-slate-900">שלום תלמידים 👋</h4>
-                        <p class="text-[11px] text-slate-500 leading-tight">אני דן GPT, עוזר השיעור והפרויקט שלכם!</p>
+                        <h4 class="font-black text-base text-slate-900">שלום תלמידים 👋</h4>
+                        <p class="text-xs text-slate-500 mt-0.5 leading-tight">אני דן GPT, עוזר השיעור והפרויקט שלכם!</p>
                     </div>
                 </div>
 
-                <p class="text-xs text-slate-600 bg-slate-50 border border-slate-200 p-2.5 rounded-xl leading-relaxed">
+                <p class="text-xs md:text-sm text-slate-700 bg-slate-50 border border-slate-200 p-3 rounded-xl leading-relaxed">
                     אני יודע שמדובר ב<b>חוויות סיכום מקיפה ומטורללת!</b> 🚀
                     אתם מוזמנים לשאול אותי כל שאלה לגבי <span class="en-badge-light">VLANs</span>, <span class="en-badge-light">Router-on-a-Stick</span>, <span class="en-badge-light">NAT</span>, <span class="en-badge-light">ACL</span> ופיתרון תקלות!
                 </p>
 
                 <!-- SKILL TAGS -->
-                <div class="flex flex-wrap gap-1.5 text-[10px] font-bold">
+                <div class="flex flex-wrap gap-1.5 text-xs font-bold">
                     <span class="bg-slate-100 border border-slate-200 text-slate-700 px-2 py-0.5 rounded">DNS</span>
                     <span class="bg-slate-100 border border-slate-200 text-slate-700 px-2 py-0.5 rounded">VLANs</span>
                     <span class="bg-slate-100 border border-slate-200 text-slate-700 px-2 py-0.5 rounded">Router-on-a-Stick</span>
@@ -822,7 +821,7 @@
                 </div>
 
                 <!-- BOT CONNECT BUTTON -->
-                <a href="https://gemini.google.com/gem/167016ac4a4b/66c3b83daa7940ef?usp=sharing" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2 px-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md code-font">
+                <a href="https://gemini.google.com/gem/167016ac4a4b/66c3b83daa7940ef?usp=sharing" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs md:text-sm py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md code-font">
                     <span>connect --gem dan-gpt $</span>
                 </a>
             </div>
@@ -830,7 +829,7 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-white border-t border-slate-200 py-3 px-4 text-center text-xs text-slate-500">
+    <footer class="bg-white border-t border-slate-200 py-3.5 px-4 text-center text-xs md:text-sm text-slate-600">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 font-semibold">
             <p>session: חוגגים הצלחה בתקשוב עם סהר // אקדמיית האחוואנים // חוויות סיכום רשתות // בהצלחה 💪</p>
             <span class="text-blue-600 code-font">NET_ACADEMY_SUMMARY_V10.0</span>
@@ -849,13 +848,13 @@
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.className = "tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl flex items-center gap-2 transition-all";
+                btn.className = "tab-btn bg-white hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all text-sm";
             });
 
             document.getElementById(`sec-${tabId}`).classList.remove('hidden');
             const activeBtn = document.getElementById(`tab-${tabId}`);
             if (activeBtn) {
-                activeBtn.className = "tab-btn bg-red-600 text-white px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm transition-all";
+                activeBtn.className = "tab-btn bg-red-600 text-white px-4 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition-all text-sm";
             }
 
             // DYNAMIC SIDEBAR VISIBILITY: Hide in Reflection (tab 6), show in all other tabs
@@ -884,16 +883,16 @@
             const time = new Date().toLocaleTimeString('he-IL');
             
             const line = document.createElement('div');
-            line.className = "p-2 rounded bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-2";
+            line.className = "p-2.5 rounded bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-2";
             
             line.innerHTML = `
                 <div class="flex items-center gap-2" dir="ltr">
                     <span class="text-cyan-400 font-bold code-font">Router(config)#</span>
-                    <span class="text-amber-300 font-bold code-font">${cmdText}</span>
+                    <span class="text-amber-300 font-bold code-font text-xs md:text-sm">${cmdText}</span>
                 </div>
-                <div class="text-[11px] text-slate-400 font-sans flex items-center gap-2">
-                    <span class="bg-slate-800 text-emerald-400 px-2 py-0.5 rounded text-[10px]">${descHeb}</span>
-                    <span class="text-slate-600 font-mono text-[10px]">${time}</span>
+                <div class="text-xs text-slate-400 font-sans flex items-center gap-2">
+                    <span class="bg-slate-800 text-emerald-400 px-2 py-0.5 rounded text-xs">${descHeb}</span>
+                    <span class="text-slate-600 font-mono text-xs">${time}</span>
                 </div>
             `;
             
@@ -1036,4 +1035,3 @@
     </script>
 </body>
 </html>
-
